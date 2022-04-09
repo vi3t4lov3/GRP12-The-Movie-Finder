@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvel Social Media</title>
+    <link rel="stylesheet" href="./css/jass.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <!-- search bar containing marvel logo, search box, menu, and search button to call API's -->
+        <div class="navbar-container">
+            <img class="logo" src="https://cdn.iconscout.com/icon/free/png-256/marvel-282124.png" alt="logo" width="25px" height="25px">
+            <form id="search-form" class="">
+                <input id ="character" name="character" placeholderid="character" type="text" value="Iron" autofocus="true" class="form-input" />
+                <button type="submit" class="btn btn-info" id="search-button">Search</button>
+            </form>
+            <div class="dropdown">
+                <button class="dropbtn">Menu</button>
+                <div class="dropdown-content">
+                  <a href="#information">Information</a>
+                  <a href="#gif-table">Gif's</a>
+                  <a href="#movies">Posters</a>
+                </div>
+              </div>
+              
+        </div>
+    </nav>
+    <!-- connected to Marvel API, pulls up character picture and basic information -->
+    <main class="main-container">
+        <div class="information" id="information">
+            <div class="card-header">
+            <p id ="actors"></p> 
+            <span id="poster"></span>
+            <!--To Display Hero's name-->
+            <!-- <p class="card-detail">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam minus eveniet quas suscipit. Aut voluptas dolores consequatur veritatis laborum aspernatur asperiores vel, ea, non numquam sed esse obcaecati eum recusandae!</p> -->
+            <!-- <img src="./img/phot.png"> To Display Hero's Image -->
+        </div>
+        <!-- GIF column side -->
+        <aside class="ghipy" id="gif-table">GIF's
+            <div class="column">
+                <div class="giphy-card">
+                    <img class="giphy-card-1" src="#" id="hero-giphy">
+                </div>
+                <div class="giphy-card">
+                    <img class="giphy-card-2" src="#" id="hero-giphy">
+                </div>
+                <div class="giphy-card">
+                    <img class="giphy-card-3" src="#" id="hero-giphy">
+                </div>
+            </div>
+        </aside>
+        <!-- OMDB pull up movie information/reviews -->
+        <section class="movies" id="movies">Movies
+            <div class="row">
+                <div class="movie-card">
+                    <img class="movie-card-1" alt="movie-card" id="movie=card">
+                    <div class="movie-title" id="movie-title" id="rating"></div>
+                </div>
+                <div class="movie-card">
+                    <img class="movie-card-2" alt="movie-card" id="movie=card">
+                    <div class="movie-title" id="movie-title" id="rating"></div>
+                </div>
+                <div class="movie-card">
+                    <img class="movie-card-3" alt="movie-card" id="movie=card">
+                    <div class="movie-title" id="movie-title" id="rating"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+</html>
