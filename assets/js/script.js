@@ -92,5 +92,5 @@ var requestOmdbUrl = `http://www.omdbapi.com/?t=${character}&apikey=77e3425e`;
     })
 
 }
-getOmdbApi();
+
 characterSearchEL.addEventListener('submit', formSubmitHandler)
