@@ -30,35 +30,32 @@
     </nav>
     <!-- connected to Marvel API, pulls up character picture and basic information -->
     <main class="main-container">
-        <div class="card">
+        <div class="">
             <h1 class="">From Marvel Data</h1>
             <h3 id="marvel-character-name"></h3>
             <p id="marvel-character-bio"></p>
-            <p id
-            <figure id="marvel-character-img" class="img__wrapper ">
-                <!-- <img mvl-type="explore" src="https://terrigen-cdn-dev.marvel.com/content/prod/1x/012scw_ons_crd_02.jpg" srcset="https://terrigen-cdn-dev.marvel.com/content/prod/1x/012scw_ons_crd_02.jpg" width=" 200px" height="300px"> -->
+            <p id="marvel-comics"></p>
+            <p id="marvel-series"></p>
+            <p id="marvel-stories"></p>
+            <figure class="movie-poster" id="marvel-character-img" >
             </figure>
         </div>
 
         <!-- GIF column side -->
-        <aside class="ghipy" id="gif-table">GIF's
+        <aside class="ghipy" id="gif-table">
+            <h1 class="">From Ghipy Data</h1>
             <div class="column">
                 <div class="giphy-card">
-                    <img class="giphy-card-1" src="#" id="hero-giphy">
-                </div>
-                <div class="giphy-card">
-                    <img class="giphy-card-2" src="#" id="hero-giphy">
-                </div>
-                <div class="giphy-card">
-                    <img class="giphy-card-3" src="#" id="hero-giphy">
+                    <img class="giphy-card-1" id="hero-giphy">
                 </div>
             </div>
         </aside>
         <!-- OMDB pull up movie information/reviews -->
         <section class="movies" id="movies">
             <h1 class="">From OMDB Data</h1>
+            <div id ="search-list-item">
             <div class="row">
-                <div class="information" id="information">
+                <div class="movie" id="information">
                     <div class="card-header">
                     <p id ="actors"></p> 
                     <span id="poster"></span>

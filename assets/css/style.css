@@ -132,3 +132,9 @@ nav {
   outline: none;
   border-radius: 10px;
 }
+
+.movie-poster img{
+  max-width: 300px;
+  margin: 0 auto;
+  border: 4px solid #fff;
+}
