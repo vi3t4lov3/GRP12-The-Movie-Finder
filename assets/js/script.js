@@ -12,13 +12,10 @@ var marvelApi = "8dab1b84220523126c00f0c92d4bcb32";
 var marvelHashKey ='01dcb492e9aeb8c255d6ff032fac2122';
 var omdbApiKey ="77e3425e"
 var giphyApiKey = 'ngancOjMQqKMUDs0pp3lMqtR67sdDMIC'
+
 //handler the search button
 var formSubmitHandler = function(event) {
     event.preventDefault();
-    var marvelApi = "8dab1b84220523126c00f0c92d4bcb32";
-    var marvelHashKey ='01dcb492e9aeb8c255d6ff032fac2122';
-    var omdbApiKey ="77e3425e"
-    var giphyApiKey = 'ngancOjMQqKMUDs0pp3lMqtR67sdDMIC'
     var character = characterEl.value.replace(/ /g, '%20').trim();
     if (character) {
         if (character == null) {
@@ -40,11 +37,13 @@ function getGiphyApi(character) {
     .then(function (response) {
         return response.json();
     })
-    .then(function (data) {
-        // console.log(data)
-        // for (var i = 0; i < data.length; i++) {
-            
-        // }
+    .then(function (giphy) {
+        console.log(giphy)
+        for (var i = 0; i < giphy.data.length; i++) {
+            var giphygif = giphy.data[i].images.original.url
+            // console.log(giphygif)
+            $('#giphy-gif').append(`<img src="${giphygif}">`)
+        }
     })
 }
 
@@ -57,10 +56,9 @@ function getMarvelAPI(character) {
         return response.json();
     })
     .then(function (marvel) {
-        console.log(marvel);
+        // console.log(marvel);
         var data = marvel.data.results[0]
         var marvelCharacterImg = `${data.thumbnail.path}.jpg`
-        console.log(marvel)
         $('#marvel-character-name').append(data.name);
         $('#marvel-character-img').append(`<img src='${marvelCharacterImg}'>`);
         $('#marvel-character-bio').append(data.description);
@@ -99,7 +97,7 @@ var requestOmdbUrl = `https://omdbapi.com/?s=${character}&page=1&apikey=${omdbAp
         return response.json();
     })
     .then(function (OMBDdata) {
-        console.log(OMBDdata)
+        // console.log(OMBDdata)
         displayMovieList(OMBDdata.Search); //display the movies on the list
     //     var characterName = data.Title;
     //     var posterImg = data.Poster;
@@ -130,7 +128,7 @@ function loadMovieDetail(movieId) {
         return response.json();
     })
     .then(function (details) {
-        console.log(details)
+        // console.log(details)
         $('#search-list-item').append(`
             <div class = 'movie-poster'>
                 <img src = '${(details.Poster != 'N/A') ? details.Poster : 'image_not_found.png'}' alt = 'movie poster'>
