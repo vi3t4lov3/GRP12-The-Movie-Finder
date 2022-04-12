@@ -5,20 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marvel Social Media</title>
-    <link rel="stylesheet" href="./assets/css/jass.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-
-    <nav class="navbar">
-        <!-- search bar containing marvel logo, search box, menu, and search button to call API's -->
+    <!-- search bar containing marvel logo, search box, menu, and search button to call API's -->
+    <nav class="navbar navbar-default" >
         <div class="navbar-container">
-            <img class="logo" src="https://cdn.iconscout.com/icon/free/png-256/marvel-282124.png" alt="logo" width="25px" height="25px">
-            <form id="search-form" class="">
-                <input id ="character" name="character" placeholderid="character" type="text" value="Iron" autofocus="true" class="form-input" />
-                <button type="submit" class="btn btn-info" id="search-button">Search</button>
-            </form>
-            <div class="dropdown">
+            <img src="https://cdn.iconscout.com/icon/free/png-256/marvel-282124.png" alt="logo" width="100px" height="50px">
+            <form id="search-form">
+                <input class="input" id ="character" name="character" placeholderid="character" type="text" value="Captain America" autofocus="true" />
+                <div class = "search-list" id = "search-list">
+                <button type="submit" id="search-button">Search</button>
+             </form>  
+             <div class="dropdown">
                 <button class="dropbtn">Menu</button>
                 <div class="dropdown-content">
                   <a href="#information">Information</a>
@@ -26,39 +26,44 @@
                   <a href="#movies">Posters</a>
                 </div>
               </div>
-              
         </div>
     </nav>
     <!-- connected to Marvel API, pulls up character picture and basic information -->
     <main class="main-container">
-        <div class="information" id="information">
-            <div class="card-header">
-            <p id ="actors"></p> 
-            <span id="poster"></span>
-            <!--To Display Hero's name-->
-            <!-- <p class="card-detail">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam minus eveniet quas suscipit. Aut voluptas dolores consequatur veritatis laborum aspernatur asperiores vel, ea, non numquam sed esse obcaecati eum recusandae!</p> -->
-            <!-- <img src="./img/phot.png"> To Display Hero's Image -->
+        <div class="">
+            <h1 class="">From Marvel Data</h1>
+            <h3 id="marvel-character-name"></h3>
+            <p id="marvel-character-bio"></p>
+            <p id="marvel-comics"></p>
+            <p id="marvel-series"></p>
+            <p id="marvel-stories"></p>
+            <figure class="movie-poster" id="marvel-character-img" >
+            </figure>
         </div>
+
         <!-- GIF column side -->
-        <aside class="ghipy" id="gif-table">GIF's
+        <aside class="ghipy" id="gif-table">
+            <h1 class="">From Ghipy Data</h1>
             <div class="column">
                 <div class="giphy-card">
-                    <img class="giphy-card-1" src="#" id="hero-giphy">
-                </div>
-                <div class="giphy-card">
-                    <img class="giphy-card-2" src="#" id="hero-giphy">
-                </div>
-                <div class="giphy-card">
-                    <img class="giphy-card-3" src="#" id="hero-giphy">
+                    <figure class="giphy-gif" id="giphy-gif"></figure>
                 </div>
             </div>
         </aside>
         <!-- OMDB pull up movie information/reviews -->
-        <section class="movies" id="movies">Movies
+        <section class="movies" id="movies">
+            <h1 class="">From OMDB Data</h1>
+            <div id ="search-list-item">
             <div class="row">
-                <div class="movie-card">
-                    <img class="movie-card-1" alt="movie-card" id="movie=card">
+                <div class="movie" id="information">
+                    <div class="card-header">
+                    <p id ="actors"></p> 
+                    <span id="poster"></span>
+                </div>
+                <!-- <div class="movie-card">
                     <div class="movie-title" id="movie-title" id="rating"></div>
+                    <img class="movie-card-1" alt="movie-card" id="movie=card">
+                    
                 </div>
                 <div class="movie-card">
                     <img class="movie-card-2" alt="movie-card" id="movie=card">
@@ -67,7 +72,7 @@
                 <div class="movie-card">
                     <img class="movie-card-3" alt="movie-card" id="movie=card">
                     <div class="movie-title" id="movie-title" id="rating"></div>
-                </div>
+                </div> -->
             </div>
         </section>
 
