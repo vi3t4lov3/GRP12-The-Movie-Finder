@@ -67,6 +67,7 @@ function getMarvelAPI(character) {
         $('#marvel-stories').append(`Storie Available: ${data.stories.available}`);
     })
 }
+dskljsdl
 
 //list of 20 characters from database
 // function getMarvelAPI(character, marvelApi) {
