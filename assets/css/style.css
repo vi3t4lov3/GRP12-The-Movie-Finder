@@ -1,21 +1,40 @@
 
-.navbar-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border: 1px solid blue;
+.navbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap; 
+  align-items: center;
+  justify-content: space-between; 
+  padding: 0;
+  margin: 5px;
+  /* margin-bottom: 20px; */
 }
-.main-container {
-    display: flex;
-    flex-direction: row;
+main {
+  
+  /* width: 100%; */
+  border: 1px solid #000
+  /* display: flex; */
 }
-
-
+nav {
+  border: 1px solid #000
+}
+.navbar-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #202020;
+  /* border: 1px solid #000 */
+}
+.input {
+  width: 500px;
+}
 /* menu button*/
 .dropbtn {
-    background-color:red;
+    background-color:gray;
     color: white;
-    padding: 16px;
+    /* padding: 16px; */
     font-size: 16px;
     border: none;
   }
@@ -46,3 +65,70 @@
   .dropdown:hover .dropdown-content {display: block;}
   
   .dropdown:hover .dropbtn {background-color:red;}
+
+  .search-list{
+    position: absolute;
+    right: 0;
+    top: 100%;
+    max-height: 500px;
+    overflow-y: scroll;
+    z-index: 10;
+}
+.search-list{
+  position: absolute;
+  right: 0;
+  top: 100%;
+  max-height: 500px;
+  overflow-y: scroll;
+  z-index: 10;
+}
+.search-list .search-list-item{
+  background-color: var(--light-dark-color);
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--dark-color);
+  width: calc(350px - 8px);
+  color: #fff;
+  cursor: pointer;
+  -webkit-transition: background-color 200ms ease;
+  -o-transition: background-color 200ms ease;
+  transition: background-color 200ms ease;
+}
+.search-list .search-list-item:Hover{
+  background-color: #1f1f1f;
+}
+.search-list-item{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.search-item-thumbnail img{
+  width: 40px;
+  margin-right: 1rem;
+}
+.search-item-info h3{
+  font-weight: 600;
+  font-size: 1rem;
+}
+.search-item-info p{
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  opacity: 0.6;
+}
+
+/* thumbnail */
+.search-list::-webkit-scrollbar{
+  width: 8px;
+}
+.search-list::-webkit-scrollbar-track{
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+.search-list::-webkit-scrollbar-thumb{
+  background-color: var(--yellow-color);
+  outline: none;
+  border-radius: 10px;
+}

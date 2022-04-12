@@ -7,10 +7,7 @@ var outputEl = document.querySelector('#actors')
 var outputPosterEl = document.getElementById('#movie=card');
 var ratingEl = document.getElementById('#rating');
 
-
-
-
-
+//handler the search button
 var formSubmitHandler = function(event) {
     event.preventDefault();
     var marvelApi = "8dab1b84220523126c00f0c92d4bcb32";
@@ -23,10 +20,10 @@ var formSubmitHandler = function(event) {
            characterEl.value = "Please eneter character" 
 
         } else {
-        //    getOmdbApi(character, omdbApiKey); 
-        //    getGiphyApi(character, giphyApiKey);
+           getOmdbApi(character, omdbApiKey); 
+           getGiphyApi(character, giphyApiKey);
+        //    getMarvelAPI(character, marvelApi, marvelHashKey);
         }
-        getMarvelAPI(character, marvelApi, marvelHashKey);
         
     }
 }
@@ -52,15 +49,23 @@ function getMarvelAPI(character, marvelApi, marvelHashKey) {
 
     fetch(requestMarvelUrl)
     .then(function (response) {
-        console.log(response)
+        // console.log(response)
         return response.json();
     })
-    .then(function (data) {
-        console.log(data)
-        for (var i = 0; i < data.data.results.length; i++) {
-            var name = data.data.results[i].name
-           console.log(name) 
-        }
+    .then(function (marvel) {
+        var marvelCharacterName = marvel.data.results[0].name;
+        var marvelCharacterBio = marvel.data.results[0].events.items[19].name;
+        var marvelCharacterImg = `${marvel.data.results[0].thumbnail.path}.jpg`
+        console.log(marvel)
+        $('#marvel-character-name').append(marvelCharacterName);
+        $('#marvel-character-img').append(`<img src='${marvelCharacterImg}'>`);
+        $('#marvel-character-bio').append(marvelCharacterBio);
+        // $('#marvel-character-name').append(marvelCharacterName);
+        // $('#marvel-character-name').append(marvelCharacterName);
+        // for (var i = 0; i < data.data.results.length; i++) {
+        //     var name = data.data.results[i].thumbnail.path
+        //    console.log(name) 
+        // }
     })
 }
 
@@ -86,34 +91,34 @@ function getMarvelAPI(character, marvelApi, marvelHashKey) {
 
 // OMDB API for media
 function getOmdbApi(character, apikey) {
-    // two url required for character information and movie posters/pictures, both OMDb
-var requestOmdbUrl = `http://www.omdbapi.com/?t=${character}&apikey=77e3425e`;
-//  var requestOmdbUrl = `http://www.omdbapi.com/?apikey=${omdbApiKey}&`;
- var requestPosterOmdbURL = 'http://img.omdbapi.com/?i=tt3896198&h=600&apikey=7b42330f';
-    console.log(requestOmdbUrl)
-    // console.log(requestPosterOmdbURL)
-
+var requestOmdbUrl = `https://omdbapi.com/?s=${character}&page=1&apikey=77e3425e`;
+    // console.log(requestOmdbUrl)
     fetch(requestOmdbUrl)
     .then(function (response) {
         return response.json();
     })
     .then(function (data) {
-        // console.log(data)
-        var characterName = data.Title;
-        var posterImg = data.Poster;
-        var ratingList = data.Ratings;
-
-        // console.log(posterImg)
-        // outputEl.innerHTML = characterName;
-        // outputPosterEl.innerHTML = `<img src="${posterImg}">`;
-        // console.log(outputPosterEl)
-        
-    $('#actors').append(characterName);
-    $('#poster').append(`<img src='${posterImg}'>`);
-    $('#rating').append(ratingList);
-    
+        console.log(data)
+        console.log(data.Search);
+        displayMovieList(data.Search); //display the movies on the list
+    //     var characterName = data.Title;
+    //     var posterImg = data.Poster;
+    //     var ratingList = data.Ratings;
+    // $('#actors').append(characterName);
+    // $('#poster').append(`<img src='${posterImg}'>`);
+    // $('#rating').append(ratingList);
     })
-
 }
-
+function displayMovieList(movies) {
+    for (var i = 0; i < movies.length; i++) {
+        var movieListItem = movies[i].imdbID;
+        var moviePoster = movies[i].Poster;
+        console.log(movieListItem);
+        $('#search-list').append(`<div class = 'search-item-thumbnail'> <img src='${moviePoster}' /></div>
+        <div class = 'search-item-info'> <h3>${movies[i].Title}</h3>
+        <p>${movies[i].Year}</p>
+        `);
+    }
+}
+// displayMovieList() 
 characterSearchEL.addEventListener('submit', formSubmitHandler)
