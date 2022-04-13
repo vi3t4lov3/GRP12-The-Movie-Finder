@@ -1,4 +1,13 @@
+body {
+  background-image: url(/assets/img/91ejhAAeUmL._AC_SY355_.jpg);
+  /* background-size: cover;  */
+  /* background-position: center;  */
+  /* background-repeat: repeat; */
+}
 
+#search-button {
+  background-color: rgb(165, 27, 27);
+}
 .navbar {
   position: relative;
   display: flex;
@@ -7,30 +16,57 @@
   justify-content: space-between; 
   padding: 0;
   margin: 5px;
-  /* margin-bottom: 20px; */
 }
-main {
-  
-  /* width: 100%; */
-  border: 1px solid #000
-  /* display: flex; */
+
+.container {
+  font: white;
+  align-items: left;
+  padding: 20px;
 }
+
+#marvel-character-info {
+  border: 5px solid red;
+  display: flex; 
+  flex-direction: column;
+  padding: 20px;
+  background-color: rgb(115, 114, 114);
+
+}
+
+.marvel-title {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: center;
+}
+
+#marvel-character-img {
+  border-radius: 30px 30px black;
+  max-width: 50%;
+  padding: 10px;
+  align-items: center;
+}
+
+.text-marvel {
+  padding-left: 20px;
+  font-size: 40px;
+  text-align: right;
+}
+
 nav {
   border: 1px solid #000
 }
+
 .navbar-container {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: left;
   background-color: #202020;
-  /* border: 1px solid #000 */
 }
 .input {
   width: 500px;
 }
-/* menu button*/
+
 .dropbtn {
     background-color:gray;
     color: white;
@@ -143,4 +179,12 @@ nav {
   width: 150px;
   height: 150px;
 
+}
+
+#gif-table {
+  border: 5px solid red;
+  display: flex; 
+  flex-direction: column;
+  padding: 20px;
+  background-color:rgba(0, 0, 0, 0.3);
 }
