@@ -19,7 +19,7 @@ var formSubmitHandler = function(event) {
     var character = characterEl.value.replace(/ /g, '%20').trim();
     if (character) {
         if (character == null) {
-           characterEl.value = "Please eneter character" 
+           characterEl.value = "Please enter character" 
 
         } else {
             getMarvelAPI(character);
@@ -64,7 +64,7 @@ function getMarvelAPI(character) {
         $('#marvel-character-bio').append(data.description);
         $('#marvel-comics').append(`Comic Available: <a href="${data.comics.collectionURI}" target="_blank"> ${data.comics.available} </a>`);
         $('#marvel-series').append(`Series Available: ${data.series.available}`);
-        $('#marvel-stories').append(`Storie Available: ${data.stories.available}`);
+        $('#marvel-stories').append(`Stories Available: ${data.stories.available}`);
     })
 }
 
