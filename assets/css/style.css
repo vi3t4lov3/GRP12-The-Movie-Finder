@@ -1,13 +1,11 @@
 body {
-  background-image: url(/assets/img/91ejhAAeUmL._AC_SY355_.jpg);
-  /* background-size: cover;  */
-  /* background-position: center;  */
-  /* background-repeat: repeat; */
+  background-color: rgb(3, 3, 88);
 }
 
 #search-button {
   background-color: rgb(165, 27, 27);
 }
+
 .navbar {
   position: relative;
   display: flex;
