@@ -13,7 +13,7 @@
     <nav class="navbar navbar-default" >
         <div class="navbar-container">
             <img src="https://cdn.iconscout.com/icon/free/png-256/marvel-282124.png" alt="logo" width="100px" height="50px">
-            <div class="dropdown">
+            <div class="dropdown" id="dropdown" >
                 <button class="dropbtn">Menu</button>
                 <div class="dropdown-content">
                   <a href="#information">Information</a>
@@ -22,7 +22,7 @@
                 </div>
               </div>
             <form id="search-form">
-                <button type="submit" id="search-button">Search</button>
+                <button type="submit" id="search-button" onclick="myFunction()">Search</button>
                 <input class="input" id ="character" name="character" placeholderid="character" type="text" value="Captain America" autofocus="true" />
                 <div class = "search-list" id = "search-list">
              </form>  
