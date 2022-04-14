@@ -29,9 +29,10 @@ var formSubmitHandler = function(event) {
         
     }
 }
+
 // call API for GIF, side column
 function getGiphyApi(character) {
-    var requestGiphyApi = `https://api.giphy.com/v1/gifs/search?api_key=${giphyApiKey}&q=${character}&limit=25&offset=0&rating=g&lang=en`
+    var requestGiphyApi = `https://api.giphy.com/v1/gifs/search?api_key=${giphyApiKey}&q=${character}&limit=5&offset=0&rating=pg&lang=en`
 
     fetch(requestGiphyApi)
     .then(function (response) {
@@ -113,7 +114,7 @@ function displayMovieList(movies) {
         var movieListItem = movies[i].imdbID;
         var moviePoster = movies[i].Poster;
         // console.log(movieListItem);
-        $('#search-list').append(`<div onclick="loadMovieDetail('${movieListItem}')" class = 'search-item-thumbnail'> <img src='${moviePoster}' /></div>
+        $('#search-list-item').append(`<div onclick="loadMovieDetail('${movieListItem}')" class = 'search-item-thumbnail'> <img src='${moviePoster}' /></div>
         <div class = 'search-item-info'> <h3>${movies[i].Title}</h3>
         <p>${movies[i].Year}</p>
         `);

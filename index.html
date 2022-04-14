@@ -30,15 +30,19 @@
     </nav>
     <!-- connected to Marvel API, pulls up character picture and basic information -->
     <main class="main-container">
-        <div class="marvel-row">
-            <h1 class="marvel">From Marvel Data</h1>
-            <h3 id="marvel-character-name"></h3>
-            <p id="marvel-character-bio"></p>
-            <p id="marvel-comics"></p>
-            <p id="marvel-series"></p>
-            <p id="marvel-stories"></p>
-            <figure class="movie-poster" id="marvel-character-img" >
-            </figure>
+        <div>
+            <h1 class="marvel-row">From Marvel Data</h1>
+                <div class="marvel">
+                <figure class="movie-poster" id="marvel-character-img" >
+                </figure>
+                <h3 id="marvel-character-name"></h3>
+                <p id="marvel-character-bio"></p>
+                <p id="marvel-comics"></p>
+                <p id="marvel-series"></p>
+                <p id="marvel-stories"></p>
+                <figure class="movie-poster" id="marvel-character-img" >
+                </figure>
+            </div>
         </div>
 
         <!-- GIF column side -->
@@ -54,12 +58,13 @@
         <section class="movies" id="movies">
             <h1 class="">From OMDB Data</h1>
             <div id ="search-list-item">
-            <div class="row">
+
+            <!-- <div class="row">
                 <div class="movie" id="information">
                     <div class="card-header">
                     <p id ="actors"></p> 
                     <span id="poster"></span>
-                </div>
+                </div> -->
                 <!-- <div class="movie-card">
                     <div class="movie-title" id="movie-title" id="rating"></div>
                     <img class="movie-card-1" alt="movie-card" id="movie=card">
