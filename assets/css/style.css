@@ -28,7 +28,8 @@ nav {
   /* border: 1px solid #000 */
 }
 .input {
-  width: 500px;
+  width: 300px;
+  margin-right: 10px;
 }
 /* menu button*/
 .dropbtn {
@@ -42,6 +43,8 @@ nav {
   .dropdown {
     position: relative;
     display: inline-block;
+    margin-left: 63%;
+    display: none;
   }
   
   .dropdown-content {
@@ -118,6 +121,7 @@ nav {
   font-weight: 600;
   opacity: 0.6;
 }
+
 
 /* thumbnail */
 .search-list::-webkit-scrollbar{

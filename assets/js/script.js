@@ -151,3 +151,12 @@ function loadMovieDetail(movieId) {
 })
 }
 characterSearchEL.addEventListener('submit', formSubmitHandler)
+//Hide MENU until a search has been conducted
+function myFunction() {
+    var x = document.getElementById("dropdown");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "block";
+    }
+  }
