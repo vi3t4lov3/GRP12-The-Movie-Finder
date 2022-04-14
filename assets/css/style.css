@@ -28,7 +28,8 @@ nav {
   /* border: 1px solid #000 */
 }
 .input {
-  width: 500px;
+  width: 300px;
+  margin-right: 10px;
 }
 /* menu button*/
 .dropbtn {
