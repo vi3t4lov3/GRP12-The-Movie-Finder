@@ -44,6 +44,7 @@ nav {
     position: relative;
     display: inline-block;
     margin-left: 63%;
+    display: none;
   }
   
   .dropdown-content {
