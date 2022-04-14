@@ -137,6 +137,11 @@ nav {
   border-radius: 10px;
 }
 
+.marvel {
+  display: flex;
+  flex-direction: row;
+}
+
 .movie-poster img{
   max-width: 300px;
   margin: 0 auto;
@@ -148,4 +153,9 @@ nav {
   height: 150px;
   margin: 10px;
 
+}
+
+#search-list-item {
+  display: flex;
+  flex-direction: row;
 }
