@@ -2,18 +2,17 @@
 var characterEl = document.querySelector('#character')
 var searchButton = document. getElementById('search-button');
 var characterSearchEL = document.querySelector('#search-form')
-var gif = document.getElementById('gif-table');
+var gif = document.getElementById('#gif-column');
 var outputEl = document.querySelector('#actors')
 var outputPosterEl = document.getElementById('#movie=card');
 var ratingEl = document.getElementById('#rating');
-
 //golbal variables
 var marvelApi = "8dab1b84220523126c00f0c92d4bcb32";
 var marvelHashKey ='01dcb492e9aeb8c255d6ff032fac2122';
 var omdbApiKey ="77e3425e"
 var giphyApiKey = 'ngancOjMQqKMUDs0pp3lMqtR67sdDMIC'
 
-//handler the search button
+//handler the search button form
 var formSubmitHandler = function(event) {
     event.preventDefault();
     var character = characterEl.value.replace(/ /g, '%20').trim();
@@ -32,14 +31,15 @@ var formSubmitHandler = function(event) {
 
 // call API for GIF, side column
 function getGiphyApi(character) {
-    var requestGiphyApi = `https://api.giphy.com/v1/gifs/search?api_key=${giphyApiKey}&q=${character}&limit=5&offset=0&rating=pg&lang=en`
+    var requestGiphyApi = `https://api.giphy.com/v1/gifs/search?api_key=${giphyApiKey}&q=${character}&limit=3&offset=0&rating=g&lang=en`
 
     fetch(requestGiphyApi)
     .then(function (response) {
         return response.json();
     })
     .then(function (giphy) {
-        console.log(giphy)
+        $('#giphy-gif').empty();
+        // console.log(giphy)
         for (var i = 0; i < giphy.data.length; i++) {
             var giphygif = giphy.data[i].images.original.url
             // console.log(giphygif)
@@ -57,15 +57,22 @@ function getMarvelAPI(character) {
         return response.json();
     })
     .then(function (marvel) {
-        // console.log(marvel);
+        console.log(marvel);
         var data = marvel.data.results[0]
         var marvelCharacterImg = `${data.thumbnail.path}.jpg`
-        $('#marvel-character-name').append(data.name);
-        $('#marvel-character-img').append(`<img src='${marvelCharacterImg}'>`);
-        $('#marvel-character-bio').append(data.description);
-        $('#marvel-comics').append(`Comic Available: <a href="${data.comics.collectionURI}" target="_blank"> ${data.comics.available} </a>`);
-        $('#marvel-series').append(`Series Available: ${data.series.available}`);
-        $('#marvel-stories').append(`Storie Available: ${data.stories.available}`);
+        $('#character-info').empty();
+        $('#character-info').append(`
+           <div class="marvel-img">
+                <img src='${marvelCharacterImg}'>;
+            </div>
+            <div>
+                <h3>Name: ${data.name}</h3>
+                <p id="marvel-character-bio">${data.description}</p>
+                <p id="marvel-comics">Comic Available: ${data.comics.available}</p>
+                <p id="marvel-series">${data.series.available}</p>
+                <p id="marvel-stories">${data.stories.available}</p>
+        </div> 
+        `)
     })
 }
 
@@ -114,9 +121,8 @@ function displayMovieList(movies) {
         var movieListItem = movies[i].imdbID;
         var moviePoster = movies[i].Poster;
         // console.log(movieListItem);
-        $('#search-list-item').append(`<div onclick="loadMovieDetail('${movieListItem}')" class = 'search-item-thumbnail'> <img src='${moviePoster}' /></div>
-        <div class = 'search-item-info'> <h3>${movies[i].Title}</h3>
-        <p>${movies[i].Year}</p>
+        $('#list-item').append(`<div onclick="loadMovieDetail('${movieListItem}')" class = 'search-item-thumbnail'><p>${movies[i].Title}</p><img src='${moviePoster}' /><p>${movies[i].Year}</p></div>
+
         `);
     }
 }
@@ -126,11 +132,13 @@ function loadMovieDetail(movieId) {
     var movieDetailUrl = `http://www.omdbapi.com/?i=${movieId}&apikey=${omdbApiKey}`;
     fetch(movieDetailUrl)
     .then(function (response) {
+        console.log(response)
         return response.json();
     })
     .then(function (details) {
-        // console.log(details)
-        $('#search-list-item').append(`
+        console.log(details)
+        $('#movie-details').empty(); 
+        $('#movie-details').append(`
             <div class = 'movie-poster'>
                 <img src = '${(details.Poster != 'N/A') ? details.Poster : 'image_not_found.png'}' alt = 'movie poster'>
             </div>
