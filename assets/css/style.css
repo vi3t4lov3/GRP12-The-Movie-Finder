@@ -22,12 +22,21 @@ nav {
 main {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   border: 1px solid #000
 }
 .character-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 80%;
+}
+.character-profile {
+  display: flex;
+  flex-direction: row;
+}
+.character-profile img {
+  width: 300px;
+  height: 450px;
 }
 /* marel & OMDB api class  */
 .marvel {
@@ -50,9 +59,11 @@ main {
   width: 20%;
   display: flex;
   flex-direction: column;
+
+
 }
 .giphy-gif img {
-  width: 100%;
+  width: 200px;
   height: 200px;
   margin: 10px;
 }
