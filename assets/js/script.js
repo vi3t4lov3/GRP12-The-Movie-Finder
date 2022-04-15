@@ -28,6 +28,7 @@ var formSubmitHandler = function(event) {
         
     }
 }
+
 // call API for GIF, side column
 function getGiphyApi(character) {
     var requestGiphyApi = `https://api.giphy.com/v1/gifs/search?api_key=${giphyApiKey}&q=${character}&limit=3&offset=0&rating=g&lang=en`
@@ -159,3 +160,12 @@ function loadMovieDetail(movieId) {
 })
 }
 characterSearchEL.addEventListener('submit', formSubmitHandler)
+//Hide MENU until a search has been conducted
+function myFunction() {
+    var x = document.getElementById("dropdown");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "block";
+    }
+  }

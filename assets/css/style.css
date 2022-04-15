@@ -69,6 +69,8 @@ nav {
   .dropdown {
     position: relative;
     display: inline-block;
+    margin-left: 63%;
+    display: none;
   }
   
   .dropdown-content {
@@ -144,6 +146,7 @@ nav {
   font-weight: 600;
   opacity: 0.6;
 }
+
 
 /* thumbnail */
 .search-list::-webkit-scrollbar{
