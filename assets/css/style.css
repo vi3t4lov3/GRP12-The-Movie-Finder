@@ -29,10 +29,32 @@ main {
   flex-direction: row;
   width: 80%;
 }
+/* marel & OMDB api class  */
+.marvel {
+  display: flex;
+  flex-direction: row;
+}
+.marvel-img img {
+  max-width: 300px;
+  margin: 0 auto;
+  border: 4px solid #fff;
+}
+.movie-poster img{
+  max-width: 300px;
+  margin: 0 auto;
+  border: 4px solid #fff;
+}
+
+/* giphy class */
 .giphy-container {
   width: 20%;
   display: flex;
   flex-direction: column;
+}
+.giphy-gif img {
+  width: 100%;
+  height: 200px;
+  margin: 10px;
 }
 .input {
   border: 0;
@@ -52,27 +74,6 @@ main {
 .button {
   vertical-align: middle;
   /* background-image: url('../img/search-icon.svg'); */
-}
-
-.marvel {
-  display: flex;
-  flex-direction: row;
-}
-
-.movie-poster img{
-  max-width: 300px;
-  margin: 0 auto;
-  border: 4px solid #fff;
-}
-.marvel-img img {
-    max-width: 300px;
-    margin: 0 auto;
-    border: 4px solid #fff;
-  }
-.giphy-gif img {
-  width: 100%;
-  height: 200px;
-  margin: 10px;
 }
 
 .search-item-thumbnail{ 
