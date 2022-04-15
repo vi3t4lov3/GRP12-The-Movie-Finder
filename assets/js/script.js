@@ -25,7 +25,8 @@ var formSubmitHandler = function(event) {
             getMarvelAPI(character);
             getOmdbApi(character); 
             getGiphyApi(character);
-            theMoviedbApi(character) 
+            theMoviedbApi(character);
+            $('#movie-details').empty();  
         }
         
     }
@@ -138,6 +139,7 @@ var requestOmdbUrl = `https://omdbapi.com/?s=${character}&page=1&apikey=${omdbAp
 }
 //display the list of array from the OMDB database
 function displayMovieList(movies) {
+    $('#list-item').empty()
     for (var i = 0; i < movies.length; i++) {
         var movieListItem = movies[i].imdbID;
         var moviePoster = movies[i].Poster;
@@ -181,12 +183,3 @@ function loadMovieDetail(movieId) {
 })
 }
 characterSearchEL.addEventListener('submit', formSubmitHandler)
-//Hide MENU until a search has been conducted
-function myFunction() {
-    var x = document.getElementById("dropdown");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "block";
-    }
-  }
