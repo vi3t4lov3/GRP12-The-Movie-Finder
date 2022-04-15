@@ -12,74 +12,33 @@
     <!-- search bar containing marvel logo, search box, menu, and search button to call API's -->
     <nav class="navbar navbar-default" >
         <div class="navbar-container">
-            <img src="https://cdn.iconscout.com/icon/free/png-256/marvel-282124.png" alt="logo" width="100px" height="50px">
+            <img src="./assets/img/logo-marvel.svg" alt="logo" width="100px" height="50px">
             <form id="search-form">
                 <input class="input" id ="character" name="character" placeholderid="character" type="text" value="Captain America" autofocus="true" />
-                <div class = "search-list" id = "search-list">
                 <button type="submit" id="search-button">Search</button>
+                <!-- <div class = "search-list" id = "search-list"> -->
              </form>  
-             <div class="dropdown">
-                <button class="dropbtn">Menu</button>
-                <div class="dropdown-content">
-                  <a href="#information">Information</a>
-                  <a href="#gif-table">Gif's</a>
-                  <a href="#movies">Posters</a>
-                </div>
-              </div>
-        </div>
+            
     </nav>
     <!-- connected to Marvel API, pulls up character picture and basic information -->
     <main class="main-container">
-        <div class="">
-            <h1 class="">From Marvel Data</h1>
-            <h3 id="marvel-character-name"></h3>
-            <p id="marvel-character-bio"></p>
-            <p id="marvel-comics"></p>
-            <p id="marvel-series"></p>
-            <p id="marvel-stories"></p>
-            <figure class="movie-poster" id="marvel-character-img" >
-            </figure>
+        <div class="marvel-container">
+            <div class="marvel" id="character-info">
+            </div>
+
+        <!-- GIPHY GIF column side -->
+            <div class="gif-column">
+                <p class="giphy-gif" id="giphy-gif"></p>
+            </div>
         </div>
-
-        <!-- GIF column side -->
-        <aside class="ghipy" id="gif-table">
-            <h1 class="">From Ghipy Data</h1>
-            <div class="column">
-                <div class="giphy-card">
-                    <figure class="giphy-gif" id="giphy-gif"></figure>
-                </div>
-            </div>
-        </aside>
-        <!-- OMDB pull up movie information/reviews -->
-        <section class="movies" id="movies">
-            <h1 class="">From OMDB Data</h1>
-            <div id ="search-list-item">
-            <div class="row">
-                <div class="movie" id="information">
-                    <div class="card-header">
-                    <p id ="actors"></p> 
-                    <span id="poster"></span>
-                </div>
-                <!-- <div class="movie-card">
-                    <div class="movie-title" id="movie-title" id="rating"></div>
-                    <img class="movie-card-1" alt="movie-card" id="movie=card">
-                    
-                </div>
-                <div class="movie-card">
-                    <img class="movie-card-2" alt="movie-card" id="movie=card">
-                    <div class="movie-title" id="movie-title" id="rating"></div>
-                </div>
-                <div class="movie-card">
-                    <img class="movie-card-3" alt="movie-card" id="movie=card">
-                    <div class="movie-title" id="movie-title" id="rating"></div>
-                </div> -->
-
-                <!-- /tesetsilkgsdjlgk -->
-                <!-- Testing -->
-            </div>
-        </section>
-
     </main>
+      <!-- OMDB pull up movie information/reviews  -->
+     <section class="container">
+        <div class="movies" id="movies">
+            <div class="list-item" id ="list-item"></div>
+            <div class="movie-details" id="movie-details"></div>
+        </div>
+    </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./assets/js/script.js"></script>
