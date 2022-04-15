@@ -138,6 +138,7 @@ var requestOmdbUrl = `https://omdbapi.com/?s=${character}&page=1&apikey=${omdbAp
 }
 //display the list of array from the OMDB database
 function displayMovieList(movies) {
+    $('#list-item').empty()
     for (var i = 0; i < movies.length; i++) {
         var movieListItem = movies[i].imdbID;
         var moviePoster = movies[i].Poster;
