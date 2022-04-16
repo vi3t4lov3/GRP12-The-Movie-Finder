@@ -12,7 +12,8 @@
     <!-- search bar containing marvel logo, search box, menu, and search button to call API's -->
     <nav class="navbar navbar-default" >
         <div class="navbar-container">
-            <img src="./assets/img/logo-marvel.svg" alt="logo" width="100px" height="50px">
+            <!-- <img src="./assets/img/logo-marvel.svg" alt="logo" width="100px" height="50px"> -->
+            <h1> The Movie Search</h1>
             <form id="search-form">
                 <input class="input" id ="character" name="character" placeholderid="character" type="text" value="Chris Hemsworth" autofocus="true" />
                 <button type="submit" id="search-button">Search</button>
@@ -24,7 +25,8 @@
     <main class="main-container">
         <!-- charater container  -->
         <div class="character-container">
-            <div class="character-profile" id="character-bio"></div>
+            <div class="character-profile" id="character-bio">
+            </div>
             <div class="marvel" id="marvel-info"></div>
         </div>
         <!-- GIPHY  Column-->
@@ -36,11 +38,12 @@
       <!-- OMDB pull up movie information/reviews  -->
      <footer class="container">
         <div class="movies" id="movies">
-            <div class="list-item" id ="list-item"></div>
-            <div class="movie-details" id="movie-details"></div>
+            <div class="cast-list-item" id="character-cast"></div>
+            <!-- <div class="list-item" id ="list-item"></div> -->
+            <!-- <div class="movie-details" id="movie-details"></div> -->
         </div>
     </footer>
-
+    <script src="https://kit.fontawesome.com/7678bb41f4.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>

@@ -26,7 +26,7 @@ var formSubmitHandler = function(event) {
             getOmdbApi(character); 
             getGiphyApi(character);
             theMoviedbApi(character);
-            $('#movie-details').empty();  
+            // $('#movie-details').empty();  
         }
         
     }
@@ -43,10 +43,13 @@ function theMoviedbApi(character) {
     .then(function (data) {
         // console.log(TMDB)
         var profileId = data.results[0].id
-        getCharacterProfile(profileId) 
+        getCharacterProfile(profileId) ;
+        getSocial(profileId) ;
+        getmovie (profileId)
         // console.log(profileId);
     })
 }
+//the movie db getCharacterProfile
 function getCharacterProfile(profileId) {
     var url = `https://api.themoviedb.org/3/person/${profileId}?api_key=${tmdbpiKey}&language=en-US`
 
@@ -56,26 +59,84 @@ function getCharacterProfile(profileId) {
     })
     .then(function (tmdb) {
         $('#character-bio').empty();
-        console.log(tmdb)
+        // console.log(tmdb)
         var profileImg = `https://www.themoviedb.org/t/p/w1280/${tmdb.profile_path}`
+        var names = ''
         for (var i = 0; i < tmdb.also_known_as.length; i++) {
             var otherName = tmdb.also_known_as[i];
-            // console.log(profileImg)
+            names += `<li>${otherName}</li>\n`;
         }
         $('#character-bio').append(`
-           <div> <img src="${profileImg}"></div>
+            <div> 
+                <img src="${profileImg}">
+                <div class="social-link">
+                    <p id="facebook"></p>
+                    <p id="twitter"></p>
+                    <p id="instagram"></p>
+                </div>
+            </div>
             <div>
                 <h1>Name: ${tmdb.name}</h1>
                 <p>Biography: ${tmdb.biography}</p>
                 <p>Birthday: ${tmdb.birthday}</p>
                 <p>Place of birth: ${tmdb.place_of_birth}</p>
                 <p>${tmdb.known_for_department}</p>
-                <p>Also know as: ${otherName}</p>
-        </div> 
+                <p>Also know as: </p>
+                <ul>${names}</ul>
+            </div> 
         `)
+        // getSocial() ;
     })
 }
 
+// the movie db get extra social media link
+function getSocial (profileId) {
+    var url = `https://api.themoviedb.org/3/person/${profileId}/external_ids?api_key=${tmdbpiKey}&language=en-US`
+    fetch(url)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        // $('#character-bio').empty();
+        // console.log(data)
+        if (data.facebook_id) {
+            $('#facebook').append(`
+            <a href="https://www.facebook.com/${data.facebook_id}" target="_blank"><i class="fab fa-facebook" alt="facebook icon"></i></a>
+            `)    
+        }
+        if (data.twitter_id) {
+        $('#twitter').append(`
+            <a href="https://twitter.com/${data.twitter_id}" target="_blank"><i class="fab fa-twitter" alt="twitter icon"></i></a>
+            `)    
+        }
+        if (data.instagram_id) {
+            $('#instagram').append(`
+            <a href="https://instagram.com/${data.instagram_id}" target="_blank"><i class="fab fa-instagram" alt="instagram icon"></i></a>
+            `)
+        }
+        
+    })  
+}
+
+// the movie db get movie
+function getmovie (profileId) {
+    
+    // var url = `https://api.themoviedb.org/3/movie/299537/videos?api_key=048b1b9e7d22100a1f7a619469d30c91&language=en-US`
+    var url = `https://api.themoviedb.org/3/person/${profileId}/movie_credits?api_key=${tmdbpiKey}&language=en-US`
+    fetch(url)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        console.log(data)
+        for (var i = 0; i < data.cast.length; i++) {
+            var castPoster = data.cast[i].poster_path;
+            // console.log(castPoster)
+            $('#character-cast').append(`<div><p>${data.cast[i].title}</p><img src='https://www.themoviedb.org/t/p/w1280/${castPoster}' /><p>${data.cast[i].release_date}</p></div>
+        `);
+        }
+    })  
+}
 
 // call API for GIF, side column
 function getGiphyApi(character) {
@@ -105,9 +166,10 @@ function getMarvelAPI(character) {
         return response.json();
     })
     .then(function (marvel) {
-        // console.log(marvel);
+        console.log(marvel);
         var data = marvel.data.results[0];
         var marvelCharacterImg = `${data.thumbnail.path}.jpg`;
+
         $('#marvel-info').empty()
         $('#marvel-info').append(`
            <div class="marvel-img">
