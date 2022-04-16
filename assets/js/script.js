@@ -22,17 +22,18 @@ var formSubmitHandler = function(event) {
            characterEl.value = "Please eneter character" 
 
         } else {
-            getMarvelAPI(character);
+            // getMarvelAPI(character);
             getOmdbApi(character); 
             getGiphyApi(character);
             theMoviedbApi(character);
+            searchMovieInfo (character)
             // $('#movie-details').empty();  
         }
         
     }
 }
 
-// call API for GIF, side column
+// theMoviedbApi
 function theMoviedbApi(character) {
     var requestTMDBApi = `https://api.themoviedb.org/3/search/person?api_key=${tmdbpiKey}&query=${character}`
 
@@ -85,7 +86,6 @@ function getCharacterProfile(profileId) {
                 <ul>${names}</ul>
             </div> 
         `)
-        // getSocial() ;
     })
 }
 
@@ -120,15 +120,13 @@ function getSocial (profileId) {
 
 // the movie db get movie
 function getmovie (profileId) {
-    
-    // var url = `https://api.themoviedb.org/3/movie/299537/videos?api_key=048b1b9e7d22100a1f7a619469d30c91&language=en-US`
     var url = `https://api.themoviedb.org/3/person/${profileId}/movie_credits?api_key=${tmdbpiKey}&language=en-US`
     fetch(url)
     .then(function (response) {
         return response.json();
     })
     .then(function (data) {
-        console.log(data)
+        // console.log(data)
         for (var i = 0; i < data.cast.length; i++) {
             var castPoster = data.cast[i].poster_path;
             // console.log(castPoster)
@@ -136,6 +134,53 @@ function getmovie (profileId) {
         `);
         }
     })  
+}
+//search by the movie tittle by
+function searchMovieInfo (character) {
+    var url = `https://api.themoviedb.org/3/search/movie?api_key=${tmdbpiKey}&language=en-US&query=${character}&page=1&include_adult=false`
+    fetch(url)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) { 
+        $('#movie-search-display').empty();
+        // console.log(data)
+        for (var i = 0; i < data.results.length; i++) {
+            var movieId = data.results[i].id;
+            console.log(movieId)
+            // getVideoLink(themovieId)
+            var moviePoster = data.results[i].poster_path;
+            $('#movie-search-display').append(`
+            <div class='movie-results'>
+                <div class = 'movie-poster'>
+                    <img src = 'https://www.themoviedb.org/t/p/w1280/${moviePoster}'>
+                </div>
+                <div class ='movie-detail'>
+                    <h3 class = 'movie-title'>${data.results[i].title}</h3>
+                    <ul class = 'movie-misc-info'>
+                        <li class = 'rated'>Ratings: ${data.results[i].vote_average}</li>
+                        <li class = 'rated'>People Voted: ${data.results[i].vote_count}</li>
+                        <li class = 'released'>Released: ${data.results[i].release_date}</li>
+                    </ul>
+                    <p class = 'plot'><b>Overview:</b> ${data.results[i].overview}</p>
+                    <p class = 'language'><b>Language:</b> ${data.results[i].original_language}</p>
+                </div>
+            </div>
+            `)
+        }
+    })  
+}
+
+// get video from the movie id
+function getVideoLink(themovieId) {
+    var url = `https://api.themoviedb.org/3/movie/${themovieId}/videos?api_key=048b1b9e7d22100a1f7a619469d30c91&language=en-US`
+    fetch(url)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        console.log(data);
+    });
 }
 
 // call API for GIF, side column
@@ -212,7 +257,7 @@ function displayMovieList(movies) {
     }
 }
 
-//fetch the detail movie form the search list & display
+//fetch the detail movie form the search list & display from OMBDdata
 function loadMovieDetail(movieId) {
     var movieDetailUrl = `http://www.omdbapi.com/?i=${movieId}&apikey=${omdbApiKey}`;
     fetch(movieDetailUrl)
