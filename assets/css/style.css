@@ -113,9 +113,11 @@ main {
 .cast-list-item {
   display: flex;
   flex-direction: row;;
-  overflow-y: hidden;
-  overflow-x: scroll;
-  flex-wrap: nowrap;
+  /* overflow-y: hidden;
+  overflow-x: scroll; */
+  /* flex-wrap: nowrap; */
+  overflow-y: scroll;
+  max-height: 800px;
   padding-bottom: 10px;
 }
 .cast-list-item img {
