@@ -23,18 +23,21 @@ var formSubmitHandler = function(event) {
 
         } else {
             // getMarvelAPI(character);
-            getOmdbApi(character); 
+            // getOmdbApi(character); 
             getGiphyApi(character);
-            theMoviedbApi(character);
-            searchMovieInfo (character)
+            theMovieDbSearch(character)
+            // getTheMoviedpAPIs(character)
+            // searchMovieInfo (character)
             // $('#movie-details').empty();  
         }
         
     }
 }
 
-// theMoviedbApi
-function theMoviedbApi(character) {
+
+// BEGIN THE themoviedb.org API
+// function to search for person (character) from themoviedb.org
+function getTheMoviedpAPIs(character) {
     var requestTMDBApi = `https://api.themoviedb.org/3/search/person?api_key=${tmdbpiKey}&query=${character}`
 
     fetch(requestTMDBApi)
@@ -47,10 +50,9 @@ function theMoviedbApi(character) {
         getCharacterProfile(profileId) ;
         getSocial(profileId) ;
         getmovie (profileId)
-        // console.log(profileId);
     })
 }
-//the movie db getCharacterProfile
+//this function to get the detail profile of character by using the id above
 function getCharacterProfile(profileId) {
     var url = `https://api.themoviedb.org/3/person/${profileId}?api_key=${tmdbpiKey}&language=en-US`
 
@@ -58,13 +60,13 @@ function getCharacterProfile(profileId) {
     .then(function (response) {
         return response.json();
     })
-    .then(function (tmdb) {
+    .then(function (data) {
         $('#character-bio').empty();
-        // console.log(tmdb)
-        var profileImg = `https://www.themoviedb.org/t/p/w1280/${tmdb.profile_path}`
+        // console.log(data)
+        var profileImg = `https://www.themoviedb.org/t/p/w1280/${data.profile_path}`
         var names = ''
-        for (var i = 0; i < tmdb.also_known_as.length; i++) {
-            var otherName = tmdb.also_known_as[i];
+        for (var i = 0; i < data.also_known_as.length; i++) {
+            var otherName = data.also_known_as[i];
             names += `<li>${otherName}</li>\n`;
         }
         $('#character-bio').append(`
@@ -76,20 +78,19 @@ function getCharacterProfile(profileId) {
                     <p id="instagram"></p>
                 </div>
             </div>
-            <div class="bioDiv">
-                <h1>Name: ${tmdb.name}</h1>
-                <p>Biography: ${tmdb.biography}</p>
-                <p>Birthday: ${tmdb.birthday}</p>
-                <p>Place of birth: ${tmdb.place_of_birth}</p>
-                <p>${tmdb.known_for_department}</p>
+            <div>
+                <h1>Name: ${data.name}</h1>
+                <p>Biography: ${data.biography}</p>
+                <p>Birthday: ${data.birthday}</p>
+                <p>Place of birth: ${data.place_of_birth}</p>
+                <p>${data.known_for_department}</p>
                 <p>Also know as: </p>
                 <ul>${names}</ul>
             </div> 
         `)
     })
 }
-
-// the movie db get extra social media link
+// this function to get the social media link for character from the Id
 function getSocial (profileId) {
     var url = `https://api.themoviedb.org/3/person/${profileId}/external_ids?api_key=${tmdbpiKey}&language=en-US`
     fetch(url)
@@ -118,7 +119,7 @@ function getSocial (profileId) {
     })  
 }
 
-// the movie db get movie
+// this function to get the movie relate with the character
 function getmovie (profileId) {
     var url = `https://api.themoviedb.org/3/person/${profileId}/movie_credits?api_key=${tmdbpiKey}&language=en-US`
     fetch(url)
@@ -126,66 +127,136 @@ function getmovie (profileId) {
         return response.json();
     })
     .then(function (data) {
-        // console.log(data)
+        // console.log(data.cast[0].id)
+
         for (var i = 0; i < data.cast.length; i++) {
             var castPoster = data.cast[i].poster_path;
-            // console.log(castPoster)
-            $('#character-cast').append(`<div><p>${data.cast[i].title}</p><img src='https://www.themoviedb.org/t/p/w1280/${castPoster}' /><p>${data.cast[i].release_date}</p></div>
+            // console.log(data.cast[0].id)
+            $('#character-cast').append(`<div class="list-item"><p>${data.cast[i].title}</p><img src='https://www.themoviedb.org/t/p/w1280/${castPoster}' /><p>${data.cast[i].release_date}</p></div>
         `);
         }
     })  
 }
-//search by the movie tittle by
-function searchMovieInfo (character) {
-    var url = `https://api.themoviedb.org/3/search/movie?api_key=${tmdbpiKey}&language=en-US&query=${character}&page=1&include_adult=false`
-    fetch(url)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) { 
-        $('#movie-search-display').empty();
-        // console.log(data)
-        for (var i = 0; i < data.results.length; i++) {
-            var movieId = data.results[i].id;
-            console.log(movieId)
-            // getVideoLink(themovieId)
-            var moviePoster = data.results[i].poster_path;
-            $('#movie-search-display').append(`
-            <div class='movie-results'>
-                <div class = 'movie-poster'>
-                    <img src = 'https://www.themoviedb.org/t/p/w1280/${moviePoster}'>
-                </div>
-                <div class ='movie-detail'>
-                    <h3 class = 'movie-title'>${data.results[i].title}</h3>
-                    <ul class = 'movie-misc-info'>
-                        <li class = 'rated'>Ratings: ${data.results[i].vote_average}</li>
-                        <li class = 'rated'>People Voted: ${data.results[i].vote_count}</li>
-                        <li class = 'released'>Released: ${data.results[i].release_date}</li>
-                    </ul>
-                    <p class = 'plot'><b>Overview:</b> ${data.results[i].overview}</p>
-                    <p class = 'language'><b>Language:</b> ${data.results[i].original_language}</p>
-                </div>
-            </div>
-            `)
-        }
-    })  
-}
 
-// get video from the movie id
-function getVideoLink(themovieId) {
-    var url = `https://api.themoviedb.org/3/movie/${themovieId}/videos?api_key=048b1b9e7d22100a1f7a619469d30c91&language=en-US`
+// this function to Search Person, Movie, Tvshow... from themoviedb.org
+function theMovieDbSearch(character) {
+    var url = `https://api.themoviedb.org/3/search/multi?api_key=${tmdbpiKey}&language=en-US&query=${character}&page=1&include_adult=false`
     fetch(url)
     .then(function (response) {
         return response.json();
     })
     .then(function (data) {
-        console.log(data);
+        // console.log('search multi')
+        // console.log(data);
+        for (var i = 0; i < data.results.length; i++) {
+            if (data.results[i].media_type == 'movie') {
+                $('#character-bio').empty();
+                // displayMovieDetail(data.results[i].id);
+                for (var i = 0; i < data.results.length; i++) {
+                    // var movieId = data.results[i].id;
+                    var moviePoster = data.results[i].poster_path;
+                    $('#movie-search-display').append(`
+                    <div class="row">
+                            <div class="columns medium-6 large-4" onclick="loadTheMovieDetail('${data.results[i].id}')" class = 'movie-poster'>
+                                <img src = 'https://www.themoviedb.org/t/p/w1280/${moviePoster}'>
+                            </div>
+                            <div class="columns medium-6 large-8">
+                                <h3 class = 'movie-title'>Movie: ${data.results[i].title}</h3>
+                                <ul class = 'movie-misc-info'>
+                                    <li class = 'rated'>Ratings: ${data.results[i].vote_average}</li>
+                                    <li class = 'rated'>People Voted: ${data.results[i].vote_count}</li>
+                                    <li class = 'released'>Released: ${data.results[i].release_date}</li>
+                                </ul>
+                                <p class = 'plot'><b>Overview:</b> ${data.results[i].overview}</p>
+                                <p class = 'language'><b>Language:</b> ${data.results[i].original_language}</p>
+                                <p><a href = 'https://www.themoviedb.org/movie/${data.results[i].id}' target = '_blank'>View The Detail</a></p>
+                            </div>
+                    </div>
+                    `)
+                }
+            }
+        }
+        for (var i = 0; i < data.results.length; i++) {
+            if (data.results[i].media_type == 'person') {
+                $('#movie-search-display').empty();
+            // console.log('by name')
+            // console.log(data.results[i].name)
+            getTheMoviedpAPIs(character)
+        }
+        }
+        
+        for (var i = 0; i < data.results.length; i++) {
+            if (data.results[i].media_type == 'tv') {
+            var moviePoster = data.results[i].poster_path;
+            $('#tvshow-search-display').append(`
+            <div class='row tv-search-display'>
+                <div class="columns medium-6 large-8">
+                <h3 class = 'movie-title'>TV Show: ${data.results[i].original_name}</h3>
+                <ul class = 'movie-misc-info'>
+                    <li class = 'rated'>Ratings: ${data.results[i].vote_average}</li>
+                    <li class = 'rated'>People Voted: ${data.results[i].vote_count}</li>
+                    <li class = 'released'>Released: ${data.results[i].first_air_date}</li>
+                </ul>
+                <p class = 'plot'><b>Overview:</b> ${data.results[i].overview}</p>
+                <p class = 'language'><b>Language:</b> ${data.results[i].original_language}</p>
+                <p><a href = 'https://www.themoviedb.org/tv/${data.results[i].id}' target = '_blank'>View The Detail</a></p>
+                </div>
+                <div class="columns medium-6 large-4" onclick="loadTheTvShowDetail('${data.results[i].id}')" class = 'movie-poster'>
+                    <img src = 'https://www.themoviedb.org/t/p/w1280/${moviePoster}'>
+                </div>
+            </div>
+            `)
+        }
+        }
     });
 }
 
-// call API for GIF, side column
+//load & play the Movie trial 
+function loadTheMovieDetail(movieId) {
+    var movieDetailUrl = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${tmdbpiKey}&language=en-US`;
+    fetch(movieDetailUrl)
+    .then(function (response) {
+        // console.log(response)
+        return response.json();
+    })
+    .then(function (data) {
+        // console.log(data.results[0].key)
+        $('#media-player').append(`
+        <div class="video">
+        <div class="overlay">
+        <iframe width="420" height="315" src="https://www.youtube.com/embed/${data.results[0].key}"></iframe>
+        </div>
+        `)
+})
+}
+
+//load & play the TV Show trial 
+function loadTheTvShowDetail(movieId) {
+    var movieDetailUrl = `https://api.themoviedb.org/3/tv/${movieId}/videos?api_key=${tmdbpiKey}&language=en-US`;
+    fetch(movieDetailUrl)
+    .then(function (response) {
+        // console.log(response)
+        return response.json();
+    })
+    .then(function (data) {
+        // console.log(data.results[0].key)
+        $('#media-player').append(`
+        <div class="video">
+        <div class="overlay">
+        <iframe width="420" height="315" src="https://www.youtube.com/embed/${data.results[0].key}"></iframe>
+        </div>
+        `)
+})
+}
+
+
+
+// END THE themoviedb.org API
+
+// BEGIN GIPHY API
+// function call API for GIF
 function getGiphyApi(character) {
-    var requestGiphyApi = `https://api.giphy.com/v1/gifs/search?api_key=${giphyApiKey}&q=${character}&limit=4&offset=0&rating=g&lang=en`
+    var requestGiphyApi = `https://api.giphy.com/v1/gifs/search?api_key=${giphyApiKey}&q=${character}&limit=5&offset=0&rating=g&lang=en`
 
     fetch(requestGiphyApi)
     .then(function (response) {
@@ -201,37 +272,14 @@ function getGiphyApi(character) {
         }
     })
 }
+// END GIPHY API
 
-function getMarvelAPI(character) {
+//BEGIN MARVEL API
 
-    var requestMarvelUrl = `https://gateway.marvel.com/v1/public/characters?name=${character}&ts=1&apikey=${marvelApi}&hash=${marvelHashKey}`
 
-    fetch(requestMarvelUrl)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (marvel) {
-        console.log(marvel);
-        var data = marvel.data.results[0];
-        var marvelCharacterImg = `${data.thumbnail.path}.jpg`;
 
-        $('#marvel-info').empty()
-        $('#marvel-info').append(`
-           <div class="marvel-img">
-                <img src='${marvelCharacterImg}'>
-            </div>
-            <div>
-                <h3>Name: ${data.name}</h3>
-                <p id="marvel-character-bio">${data.description}</p>
-                <p id="marvel-comics">Comic Available: ${data.comics.available}</p>
-                <p id="marvel-series">Seriesl Available: ${data.series.available}</p>
-                <p id="marvel-stories">Stories Available: ${data.stories.available}</p>
-        </div> 
-        `)
-    })
-}
-
-// OMDB API for media
+// BEGIN OMDB API
+// Function get OMDB API data
 function getOmdbApi(character) {
 var requestOmdbUrl = `https://omdbapi.com/?s=${character}&page=1&apikey=${omdbApiKey}`;
     // console.log(requestOmdbUrl)
@@ -239,54 +287,59 @@ var requestOmdbUrl = `https://omdbapi.com/?s=${character}&page=1&apikey=${omdbAp
     .then(function (response) {
         return response.json();
     })
-    .then(function (OMBDdata) {
-        // console.log(OMBDdata)
-        displayMovieList(OMBDdata.Search); //display the movies on the list
+    .then(function (data) {
+        // console.log(data)
+        displayMovieList(data.Search); //display the movies on the list
     })
 }
-//display the list of array from the OMDB database
-function displayMovieList(movies) {
-    $('#list-item').empty()
-    for (var i = 0; i < movies.length; i++) {
-        var movieListItem = movies[i].imdbID;
-        var moviePoster = movies[i].Poster;
-        // console.log(movieListItem);
-        $('#list-item').append(`<div onclick="loadMovieDetail('${movieListItem}')" class = 'search-item-thumbnail'><p>${movies[i].Title}</p><img src='${moviePoster}' /><p>${movies[i].Year}</p></div>
 
-        `);
-    }
-}
+characterSearchEL.addEventListener('submit', formSubmitHandler)
+
+
+//display the list of array from the OMDB database
+// function displayMovieList(movies) {
+//     $('#list-item').empty()
+//     for (var i = 0; i < movies.length; i++) {
+//         var movieListItem = movies[i].imdbID;
+//         var moviePoster = movies[i].Poster;
+//         console.log(movieListItem);
+//         $('#list-item').append(`<div onclick="loadMovieDetail('${movieListItem}')" class = 'search-item-thumbnail'><p>${movies[i].Title}</p><img src='${moviePoster}' /><p>${movies[i].Year}</p></div>
+
+//         `);
+//     }
+// }
 
 //fetch the detail movie form the search list & display from OMBDdata
-function loadMovieDetail(movieId) {
-    var movieDetailUrl = `http://www.omdbapi.com/?i=${movieId}&apikey=${omdbApiKey}`;
-    fetch(movieDetailUrl)
-    .then(function (response) {
-        // console.log(response)
-        return response.json();
-    })
-    .then(function (details) {
-        console.log(details)
-        $('#movie-details').empty(); 
-        $('#movie-details').append(`
-            <div class = 'movie-poster'>
-                <img src = '${(details.Poster != 'N/A') ? details.Poster : 'image_not_found.png'}' alt = 'movie poster'>
-            </div>
-            <div>
-                <h3 class = 'movie-title'>${details.Title}</h3>
-                <ul class = 'movie-misc-info'>
-                    <li class = 'year'>Year: ${details.Year}</li>
-                    <li class = 'rated'>Ratings: ${details.Rated}</li>
-                    <li class = 'released'>Released: ${details.Released}</li>
-                </ul>
-                <p class = 'genre'><b>Genre:</b> ${details.Genre}</p>
-                <p class = 'writer'><b>Writer:</b> ${details.Writer}</p>
-                <p class = 'actors'><b>Actors: </b>${details.Actors}</p>
-                <p class = 'plot'><b>Plot:</b> ${details.Plot}</p>
-                <p class = 'language'><b>Language:</b> ${details.Language}</p>
-                <p class = 'awards'><b><i class = 'fas fa-award'></i></b> ${details.Awards}</p>
-            </div>
-        `)
-})
-}
-characterSearchEL.addEventListener('submit', formSubmitHandler)
+// function loadMovieDetail(movieId) {
+//     var movieDetailUrl = `http://www.omdbapi.com/?i=${movieId}&apikey=${omdbApiKey}`;
+//     fetch(movieDetailUrl)
+//     .then(function (response) {
+//         // console.log(response)
+//         return response.json();
+//     })
+//     .then(function (movieDetails) {
+//         console.log('Movie details from OMDB')
+//         console.log(movieDetails)
+//         $('#movie-details').empty(); 
+//         $('#movie-details').append(`
+//             <div class = 'movie-poster'>
+//                 <img src = '${(movieDetails.Poster != 'N/A') ? movieDetails.Poster : 'image_not_found.png'}' alt = 'movie poster'>
+//             </div>
+//             <div>
+//                 <h3 class = 'movie-title'>${movieDetails.Title}</h3>
+//                 <ul class = 'movie-misc-info'>
+//                     <li class = 'year'>Year: ${movieDetails.Year}</li>
+//                     <li class = 'rated'>Ratings: ${movieDetails.Rated}</li>
+//                     <li class = 'released'>Released: ${movieDetails.Released}</li>
+//                 </ul>
+//                 <p class = 'genre'><b>Genre:</b> ${movieDetails.Genre}</p>
+//                 <p class = 'writer'><b>Writer:</b> ${movieDetails.Writer}</p>
+//                 <p class = 'actors'><b>Actors: </b>${movieDetails.Actors}</p>
+//                 <p class = 'plot'><b>Plot:</b> ${movieDetails.Plot}</p>
+//                 <p class = 'language'><b>Language:</b> ${movieDetails.Language}</p>
+//                 <p class = 'awards'><b><i class = 'fas fa-award'></i></b> ${movieDetails.Awards}</p>
+//             </div>
+//         `)
+// })
+// }
+
