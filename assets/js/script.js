@@ -132,7 +132,7 @@ function getmovie (profileId) {
         for (var i = 0; i < data.cast.length; i++) {
             var castPoster = data.cast[i].poster_path;
             // console.log(data.cast[0].id)
-            $('#character-cast').append(`<div class="casting"><p>${data.cast[i].title}</p><img src='https://www.themoviedb.org/t/p/w1280/${castPoster}' /><p>${data.cast[i].release_date}</p></div>
+            $('#character-cast').append(`<div class="list-item"><p>${data.cast[i].title}</p><img src='https://www.themoviedb.org/t/p/w1280/${castPoster}' /><p>${data.cast[i].release_date}</p></div>
         `);
         }
     })  
@@ -156,21 +156,21 @@ function theMovieDbSearch(character) {
                     // var movieId = data.results[i].id;
                     var moviePoster = data.results[i].poster_path;
                     $('#movie-search-display').append(`
-                    <div class='movie-results'>
-                        <div onclick="loadTheMovieDetail('${data.results[i].id}')" class = 'movie-poster'>
-                            <img src = 'https://www.themoviedb.org/t/p/w1280/${moviePoster}'>
-                        </div>
-                        <div class ='movie-detail'>
-                            <h3 class = 'movie-title'>Movie: ${data.results[i].title}</h3>
-                            <ul class = 'movie-misc-info'>
-                                <li class = 'rated'>Ratings: ${data.results[i].vote_average}</li>
-                                <li class = 'rated'>People Voted: ${data.results[i].vote_count}</li>
-                                <li class = 'released'>Released: ${data.results[i].release_date}</li>
-                            </ul>
-                            <p class = 'plot'><b>Overview:</b> ${data.results[i].overview}</p>
-                            <p class = 'language'><b>Language:</b> ${data.results[i].original_language}</p>
-                            <p><a href = 'https://www.themoviedb.org/movie/${data.results[i].id}' target = '_blank'>View The Detail</a></p>
-                        </div>
+                    <div class="row">
+                            <div class="columns medium-6 large-4" onclick="loadTheMovieDetail('${data.results[i].id}')" class = 'movie-poster'>
+                                <img src = 'https://www.themoviedb.org/t/p/w1280/${moviePoster}'>
+                            </div>
+                            <div class="columns medium-6 large-8">
+                                <h3 class = 'movie-title'>Movie: ${data.results[i].title}</h3>
+                                <ul class = 'movie-misc-info'>
+                                    <li class = 'rated'>Ratings: ${data.results[i].vote_average}</li>
+                                    <li class = 'rated'>People Voted: ${data.results[i].vote_count}</li>
+                                    <li class = 'released'>Released: ${data.results[i].release_date}</li>
+                                </ul>
+                                <p class = 'plot'><b>Overview:</b> ${data.results[i].overview}</p>
+                                <p class = 'language'><b>Language:</b> ${data.results[i].original_language}</p>
+                                <p><a href = 'https://www.themoviedb.org/movie/${data.results[i].id}' target = '_blank'>View The Detail</a></p>
+                            </div>
                     </div>
                     `)
                 }
@@ -189,20 +189,20 @@ function theMovieDbSearch(character) {
             if (data.results[i].media_type == 'tv') {
             var moviePoster = data.results[i].poster_path;
             $('#tvshow-search-display').append(`
-            <div class='movie-results'>
-                <div onclick="loadTheTvShowDetail('${data.results[i].id}')" class = 'movie-poster'>
-                    <img src = 'https://www.themoviedb.org/t/p/w1280/${moviePoster}'>
+            <div class='row tv-search-display'>
+                <div class="columns medium-6 large-8">
+                <h3 class = 'movie-title'>TV Show: ${data.results[i].original_name}</h3>
+                <ul class = 'movie-misc-info'>
+                    <li class = 'rated'>Ratings: ${data.results[i].vote_average}</li>
+                    <li class = 'rated'>People Voted: ${data.results[i].vote_count}</li>
+                    <li class = 'released'>Released: ${data.results[i].first_air_date}</li>
+                </ul>
+                <p class = 'plot'><b>Overview:</b> ${data.results[i].overview}</p>
+                <p class = 'language'><b>Language:</b> ${data.results[i].original_language}</p>
+                <p><a href = 'https://www.themoviedb.org/tv/${data.results[i].id}' target = '_blank'>View The Detail</a></p>
                 </div>
-                <div class ='movie-detail'>
-                    <h3 class = 'movie-title'>TV Show: ${data.results[i].original_name}</h3>
-                    <ul class = 'movie-misc-info'>
-                        <li class = 'rated'>Ratings: ${data.results[i].vote_average}</li>
-                        <li class = 'rated'>People Voted: ${data.results[i].vote_count}</li>
-                        <li class = 'released'>Released: ${data.results[i].first_air_date}</li>
-                    </ul>
-                    <p class = 'plot'><b>Overview:</b> ${data.results[i].overview}</p>
-                    <p class = 'language'><b>Language:</b> ${data.results[i].original_language}</p>
-                    <p><a href = 'https://www.themoviedb.org/tv/${data.results[i].id}' target = '_blank'>View The Detail</a></p>
+                <div class="columns medium-6 large-4" onclick="loadTheTvShowDetail('${data.results[i].id}')" class = 'movie-poster'>
+                    <img src = 'https://www.themoviedb.org/t/p/w1280/${moviePoster}'>
                 </div>
             </div>
             `)
