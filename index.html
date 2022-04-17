@@ -6,40 +6,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actor Movie DataBase </title>
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/> -->
-    <!-- foundation-float.min.css: Compressed CSS with legacy Float Grid -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation-float.min.css" crossorigin="anonymous">
+    <title>Entertaiment Finder</title>
+  <!-- foundation-float.min.css: Compressed CSS with legacy Float Grid -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation-float.min.css" crossorigin="anonymous">
 
-    <!-- foundation-prototype.min.css: Compressed CSS with prototyping classes -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation-prototype.min.css" crossorigin="anonymous">
-    
-    <!-- foundation-rtl.min.css: Compressed CSS with right-to-left reading direction -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation-rtl.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" crossorigin="anonymous">
-        <link rel="stylesheet" href="./assets/css/style.css">
+  <!-- foundation-prototype.min.css: Compressed CSS with prototyping classes -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation-prototype.min.css" crossorigin="anonymous">
+  
+  <!-- foundation-rtl.min.css: Compressed CSS with right-to-left reading direction -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation-rtl.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
     <nav>
         <!-- .top-bar is navigation in foundation framework -->
         <div class="top-bar">
-
             <!-- left side of nav -->
             <div class="top-bar-left">
-               <h1> Movie/Actor DataBase </h1>      
+               <a href="index.html"><h1> Entertaiment Finder </h1>  </a>    
             </div>
-
              <!-- right side of nav -->
-                <div class="top-bar-right">  
-                    
-                 <!-- search bar-->    
-                    <form id="search-form">                     
-                        <ul class="menu">                         
-                            <li><input class="input" id ="character" name="character" placeholderid="character" type="text" value="Chris Hemsworth" autofocus="true" /></li>
-                            <li><button class="button" type="submit" id="search-button">Search</button></li> 
-                        </ul>              
-                    </form>                                        
-                </div>       
+            <div class="top-bar-right">  
+                <!-- search bar-->    
+                <form id="search-form">                     
+                    <ul class="menu">                         
+                        <li><input class="input" id ="character" name="character" placeholderid="character" type="text" value="Spider Man" autofocus="true" /></li>
+                        <li><button class="button" type="submit" id="search-button">Search</button></li> 
+                    </ul>              
+                </form>                                        
+            </div>       
         </div>
     </nav>
 
@@ -47,37 +43,27 @@
     <main class="main-container">
         <div class="row">
             <div class="columns small-12 medium-8 large-10">
-            <!-- character container  -->
-                <div class="character-container">
-                     <div class="character-profile" id="character-bio"></div>
-                     <div class="marvel" id="marvel-info"></div>
-                </div>
+            <div class="video-container" id="media-player"></div>
+                <div class="character-profile" id="character-bio"></div>
+                <div class="movie-search-display" id="movie-search-display"></div>
+                <div class="tvshow-search-display" id="tvshow-search-display"></div>
              </div>
              
             <div class="columns small-12 medium-4 large-2">
                 <div class="giphy-container">
-                <p class="giphy-gif" id="giphy-gif"></p>
-            </div>
-        </div>
-      </div>
-    
-    </main>
-      <!-- OMDB pull up movie information/reviews  -->
-     
-       <div class="row">
-        <div class="sm-12 med-12 column"></div>
-            <div class="container">
-                <div class="movies" id="movies">
-                 <!-- <div class="cast-list-item" id="character-cast"></div>  -->
-                    <div class="list-item" id ="list-item"></div>
-                    <div class="movie-details" id="movie-details"></div>
+                    <p class="giphy-gif" id="giphy-gif"></p>
                 </div>
             </div>
-
-
-       </div> 
-
-    <footer></footer>
+         </div>
+    </main>
+      <!-- Listing the casting movie relate with characters  -->
+    <div class="cast">
+        <!-- <div class="sm-12 med-12 column"> -->
+                <!-- <div class="list-item2" id ="list-item"></div> -->
+                <div class="cast-list-item" id="character-cast"></div>
+                <!-- <div class="list-item" id ="list-item"></div> -->
+                <!-- <div class="movie-details" id="movie-details"></div> -->
+    </div>
      
     <script src="https://kit.fontawesome.com/7678bb41f4.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
