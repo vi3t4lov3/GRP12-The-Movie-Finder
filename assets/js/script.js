@@ -190,7 +190,7 @@ function theMovieDbSearch(character) {
             var moviePoster = data.results[i].poster_path;
             $('#tvshow-search-display').append(`
             <div class='movie-results'>
-                <div class = 'movie-poster'>
+                <div onclick="loadTheTvShowDetail('${data.results[i].id}')" class = 'movie-poster'>
                     <img src = 'https://www.themoviedb.org/t/p/w1280/${moviePoster}'>
                 </div>
                 <div class ='movie-detail'>
@@ -211,9 +211,28 @@ function theMovieDbSearch(character) {
     });
 }
 
-//load & play the trial video
+//load & play the Movie trial 
 function loadTheMovieDetail(movieId) {
     var movieDetailUrl = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${tmdbpiKey}&language=en-US`;
+    fetch(movieDetailUrl)
+    .then(function (response) {
+        // console.log(response)
+        return response.json();
+    })
+    .then(function (data) {
+        // console.log(data.results[0].key)
+        $('#media-player').append(`
+        <div class="video">
+        <div class="overlay">
+        <iframe width="420" height="315" src="https://www.youtube.com/embed/${data.results[0].key}"></iframe>
+        </div>
+        `)
+})
+}
+
+//load & play the TV Show trial 
+function loadTheTvShowDetail(movieId) {
+    var movieDetailUrl = `https://api.themoviedb.org/3/tv/${movieId}/videos?api_key=${tmdbpiKey}&language=en-US`;
     fetch(movieDetailUrl)
     .then(function (response) {
         // console.log(response)
