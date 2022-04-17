@@ -13,9 +13,9 @@
     <nav class="navbar navbar-default" >
         <div class="navbar-container">
             <!-- <img src="./assets/img/logo-marvel.svg" alt="logo" width="100px" height="50px"> -->
-            <h1>The Movie Finder</h1>
+            <h1><a href="index.html">The Movie Finder</a></h1>
             <form id="search-form">
-                <input class="input" id ="character" name="character" placeholderid="character" type="text" value="Spider Man" autofocus="true" />
+                <input class="input" id ="character" name="character" placeholderid="character" type="text" value="Chris Hemsworth" autofocus="true" />
                 <button type="submit" id="search-button">Search</button>
                 <!-- <div class = "search-list" id = "search-list"> -->
              </form>  
@@ -24,10 +24,12 @@
     <!-- connected to Marvel API, pulls up character picture and basic information -->
     <main class="main-container">
         <!-- charater container  -->
-        <div class="character-container"> <div class="character-profile" id="character-bio"></div>
-            <!-- <div class="list-item" id ="list-item"></div> -->
+        <div class="video-container" id="media-player"></div>
+        <div class="character-container"> 
+            <div class="character-profile" id="character-bio"></div>
             <div class="movie-search-display" id="movie-search-display"></div>
-
+            
+            <div class="tvshow-search-display" id="tvshow-search-display"></div>
             <div class="marvel" id="marvel-info"></div>
         </div>
         <!-- GIPHY  Column-->
@@ -39,7 +41,8 @@
       <!-- OMDB pull up movie information/reviews  -->
      <footer class="container">
         <div class="movies" id="movies">
-            <!-- <div class="cast-list-item" id="character-cast"></div> -->
+            <div class="list-item2" id ="list-item"></div>
+            <div class="cast-list-item" id="character-cast"></div>
             <div class="list-item" id ="list-item"></div>
             <div class="movie-details" id="movie-details"></div>
         </div>
