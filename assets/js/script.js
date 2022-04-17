@@ -76,7 +76,7 @@ function getCharacterProfile(profileId) {
                     <p id="instagram"></p>
                 </div>
             </div>
-            <div>
+            <div class="bioDiv">
                 <h1>Name: ${tmdb.name}</h1>
                 <p>Biography: ${tmdb.biography}</p>
                 <p>Birthday: ${tmdb.birthday}</p>
@@ -185,7 +185,7 @@ function getVideoLink(themovieId) {
 
 // call API for GIF, side column
 function getGiphyApi(character) {
-    var requestGiphyApi = `https://api.giphy.com/v1/gifs/search?api_key=${giphyApiKey}&q=${character}&limit=3&offset=0&rating=g&lang=en`
+    var requestGiphyApi = `https://api.giphy.com/v1/gifs/search?api_key=${giphyApiKey}&q=${character}&limit=4&offset=0&rating=g&lang=en`
 
     fetch(requestGiphyApi)
     .then(function (response) {
