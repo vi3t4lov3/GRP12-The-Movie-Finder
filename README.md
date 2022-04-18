@@ -30,12 +30,12 @@ $ cd GRP12-The-Movie-Finder
 ## The Demo Page
 https://vi3t4lov3.github.io/GRP12-The-Movie-Finder/
 Home Page with New Movie Listing
-![imagename](./img/img1.png)
+![imagename](./assets/img/img1.png)
 
 Character Display
-![imagename](./img/img2.png)
+![imagename](./assets/img/img2.png)
 
 Movie Dipslay
-![imagename](./img/img3.png)
+![imagename](./assets/img/img3.png)
 
 ## Future
