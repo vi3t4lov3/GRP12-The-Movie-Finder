@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entertaiment Finder</title>
+    <title>Actor Movie Database</title>
   <!-- foundation-float.min.css: Compressed CSS with legacy Float Grid -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation-float.min.css" crossorigin="anonymous">
 
@@ -24,14 +24,19 @@
         <div class="top-bar">
             <!-- left side of nav -->
             <div class="top-bar-left">
-               <a href="index.html"><h1> Entertaiment Finder </h1>  </a>    
+               <a href="index.html"><img src="./assets/img/logo.png" alt="movie search logo"></a>    
             </div>
              <!-- right side of nav -->
             <div class="top-bar-right">  
-                <!-- search bar-->    
+                <!-- search bar-->       
                 <form id="search-form">                     
-                    <ul class="menu">                         
-                        <li><input class="input" id ="character" name="character" placeholderid="character" type="text" value="Spider Man" autofocus="true" /></li>
+                    <ul class="menu">   
+                        <li class="dropdown">
+                            <text class="button">▼</text>
+                            <div class="dropdown-content" id="history-search">
+                            </div>
+                          </li>         
+                        <li><input class="input" id ="character" name="character" placeholderid="character" type="text" value="Enter search here..." autofocus="true" /></li>
                         <li><button class="button" type="submit" id="search-button">Search</button></li> 
                     </ul>              
                 </form>                                        
@@ -41,12 +46,15 @@
 
     <!-- connected to Marvel API, pulls up character picture and basic information -->
     <main class="main-container">
+        <div class="playing-now" id="playing-now"></div>
         <div class="row">
             <div class="columns small-12 medium-8 large-10">
             <div class="video-container" id="media-player"></div>
-                <div class="character-profile" id="character-bio"></div>
+                <div id="character-bio"></div>
                 <div class="movie-search-display" id="movie-search-display"></div>
+                <div class="tvshow-container" id="tvShow-player"></div>
                 <div class="tvshow-search-display" id="tvshow-search-display"></div>
+
              </div>
              
             <div class="columns small-12 medium-4 large-2">
@@ -64,6 +72,9 @@
                 <!-- <div class="list-item" id ="list-item"></div> -->
                 <!-- <div class="movie-details" id="movie-details"></div> -->
     </div>
+    <footer class="footer">
+        <p>©2022 by Tori Hendricks, Corey Levine, Tu Nguyen, & Lauren Aderson. The database © by <a href="https://www.themoviedb.org" target="_blank">TheMovieDB</a></p>
+    </footer>
      
     <script src="https://kit.fontawesome.com/7678bb41f4.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
