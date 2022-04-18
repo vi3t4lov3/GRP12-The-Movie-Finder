@@ -28,7 +28,8 @@ var formSubmitHandler = function(event) {
             theMovieDbSearch(character)
             // getTheMoviedpAPIs(character)
             // searchMovieInfo (character)
-            // $('#movie-details').empty();  
+            // $('#movie-details').empty();
+            $('#character-cast').empty();  
         }
         
     }
