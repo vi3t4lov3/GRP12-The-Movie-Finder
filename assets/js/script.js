@@ -30,11 +30,13 @@ var formSubmitHandler = function(event) {
             // searchMovieInfo (character)
             // $('#movie-details').empty();
             $('#character-cast').empty();  
+            $('#character-bio').empty();  
+            $('#movie-search-display').empty();  
+            $('#tvshow-search-display').empty();  
         }
         
     }
 }
-
 
 // BEGIN THE themoviedb.org API
 // function to search for person (character) from themoviedb.org
