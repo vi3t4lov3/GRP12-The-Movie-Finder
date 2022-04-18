@@ -29,7 +29,13 @@ $ cd GRP12-The-Movie-Finder
 5. Create new Pull Request
 ## The Demo Page
 https://vi3t4lov3.github.io/GRP12-The-Movie-Finder/
-
+Home Page with New Movie Listing
 ![imagename](./img/img1.png)
 
+Character Display
 ![imagename](./img/img2.png)
+
+Movie Dipslay
+![imagename](./img/img3.png)
+
+## Future
