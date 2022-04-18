@@ -2,6 +2,7 @@
 var characterEl = document.querySelector('#character')
 var searchButton = document. getElementById('search-button');
 var characterSearchEL = document.querySelector('#search-form')
+var searchHistoryEl = document.querySelector('#history-search');
 var gif = document.getElementById('#gif-column');
 var outputEl = document.querySelector('#actors')
 var outputPosterEl = document.getElementById('#movie=card');
@@ -13,29 +14,43 @@ var ratingEl = document.getElementById('#rating');
 var giphyApiKey = 'ngancOjMQqKMUDs0pp3lMqtR67sdDMIC';
 var tmdbpiKey = '048b1b9e7d22100a1f7a619469d30c91';
 
-
-
 //handler the search button form
 var formSubmitHandler = function(event) {
     event.preventDefault();
     var character = characterEl.value.replace(/ /g, '%20').trim();
-    if (character) {
+    var search = JSON.parse(localStorage.getItem('searchHistory')) || [];
         if (character == null) {
-           characterEl.value = "Please eneter character" 
-
+           characterEl.value = "Please enter character" ;
         } else {
+            character = characterEl.value;
+            search.push(character);
+            localStorage.setItem('searchHistory', JSON.stringify(search));
             getGiphyApi(character);
-            theMovieDbSearch(character)
-            $('#playing-now').empty()
+            theMovieDbSearch(character);
+            renderSearchHistory(character);
+            $('#playing-now').empty();
             // getMarvelAPI(character);
             // getOmdbApi(character); 
             // getTheMoviedpAPIs(character)
             // searchMovieInfo (character)
             // $('#movie-details').empty();  
-        }
-        
-    }
+        }    
 }
+//render search history
+function renderSearchHistory(character) {
+    var historySearch= $('<p>'); //create a var for the button
+    historySearch.text(character);
+    historySearch.attr('data-search', character);
+    $('#history-search').append(historySearch);
+    $('#history-search').append(`<hr>`);
+ }
+ // click history search handler
+function historySearchClicktHandler(event) {
+    var target = event.target;
+    var newCharacter = target.getAttribute('data-search');
+    theMovieDbSearch(newCharacter)
+   }
+
 
 // BEGIN THE themoviedb.org API
 //funcation list now playing on
@@ -307,9 +322,9 @@ function getGiphyApi(character) {
 }
 // END GIPHY API
 
-getNowPlaying()
-characterSearchEL.addEventListener('submit', formSubmitHandler)
-
+getNowPlaying();
+characterSearchEL.addEventListener('submit', formSubmitHandler);
+searchHistoryEl.addEventListener('click', historySearchClicktHandler);
 
 // OUR FUTURE VERSION COMMING 
 

@@ -28,9 +28,14 @@
             </div>
              <!-- right side of nav -->
             <div class="top-bar-right">  
-                <!-- search bar-->    
+                <!-- search bar-->       
                 <form id="search-form">                     
-                    <ul class="menu">                         
+                    <ul class="menu">   
+                        <li class="dropdown">
+                            <text class="button">▼</text>
+                            <div class="dropdown-content" id="history-search">
+                            </div>
+                          </li>         
                         <li><input class="input" id ="character" name="character" placeholderid="character" type="text" value="Enter search here..." autofocus="true" /></li>
                         <li><button class="button" type="submit" id="search-button">Search</button></li> 
                     </ul>              

@@ -26,7 +26,7 @@ width: 500px;
   height: 400px;
   border-radius: 25px;
 }
-img {
+.playing-now img {
   display: block;
   width: 300px;
   height: 400px;
@@ -75,6 +75,7 @@ img:hover {
   width: 200px;
   height: 200px;
   margin: 10px;
+  border-radius: 5px 
 }
 
 
@@ -183,6 +184,35 @@ flex-direction: row;
   top: 0px; height: 100%; 
   width: 100%;
   z-index: 9998; 
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-left: 10px;
+  /* max-width: 10px; */
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+
 }
 
 footer {
