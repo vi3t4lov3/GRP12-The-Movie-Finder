@@ -187,13 +187,12 @@ flex-direction: row;
   display: block;
 
 }
-.rated {
-  width: 50px;
+/* .rated {
   background-color: aliceblue;
   border: 1px solid rgb(7, 131, 220);
-  border-radius: 25px;
+  border-radius: 5px;
   text-align: center;
-}
+} */
 
 footer {
   text-align: center;

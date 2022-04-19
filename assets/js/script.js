@@ -75,7 +75,7 @@ function getNowPlaying() {
                                 <h3 class = 'movie-title'>${data.results[i].title}</h3>
                                 <img src = 'https://www.themoviedb.org/t/p/w1280/${poster}'>
                                 <p><b>RELEASE DATE:</b> ${data.results[i].release_date}</p>
-                                <p class="rated">Rate ${data.results[i].vote_average}%</p>
+                                <p class="rated">Rate: ${data.results[i].vote_average}%</p>
                                 <p><a href = 'https://www.themoviedb.org/movie/${data.results[i].id}' target = '_blank'>View The Detail</a></p>
                             </div>
                     </div>
