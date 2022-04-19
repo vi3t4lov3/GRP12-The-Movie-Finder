@@ -71,9 +71,9 @@ function getNowPlaying() {
             // console.log(poster)
             $('#playing-now').append(`
             <div class="row">
-                            <div class="listing-playing-now" onclick="loadTheMovieDetail('${data.results[i].id}')" class = 'movie-poster'>
+                            <div class="listing-playing-now" class = 'movie-poster'>
                                 <h3 class = 'movie-title'>${data.results[i].title}</h3>
-                                <img src = 'https://www.themoviedb.org/t/p/w1280/${poster}'>
+                                <img onclick="loadTheMovieDetail('${data.results[i].id}')" src = 'https://www.themoviedb.org/t/p/w1280/${poster}'>
                                 <p><b>RELEASE DATE:</b> ${data.results[i].release_date}</p>
                                 <p class="rated">Rate: ${data.results[i].vote_average}%</p>
                                 <p><a href = 'https://www.themoviedb.org/movie/${data.results[i].id}' target = '_blank'>View The Detail</a></p>
@@ -185,7 +185,7 @@ function getmovie (profileId) {
         for (var i = 0; i < data.cast.length; i++) {
             var castPoster = data.cast[i].poster_path;
             // console.log(data.cast[0].id)
-            $('#character-cast').append(`<div onclick="loadTheMovieDetail('${data.cast[i].id}')" class="list-item"><p>${data.cast[i].title}</p><img src='https://www.themoviedb.org/t/p/w1280/${castPoster}' /><p>${data.cast[i].release_date}</p></div>
+            $('#character-cast').append(`<div class="list-item"><p>${data.cast[i].title}</p><img onclick="loadTheMovieDetail('${data.cast[i].id}')" src='https://www.themoviedb.org/t/p/w1280/${castPoster}' /><p>${data.cast[i].release_date}</p></div>
         `);
         }
     })  
@@ -213,8 +213,8 @@ function theMovieDbSearch(character) {
                     var moviePoster = data.results[i].poster_path;
                     $('#movie-search-display').append(`
                     <div class="row">
-                            <div class="columns medium-6 large-4" onclick="loadTheMovieDetail('${data.results[i].id}')" class = 'movie-poster'>
-                                <img src = 'https://www.themoviedb.org/t/p/w1280/${moviePoster}'>
+                            <div class="columns medium-6 large-4" class = 'movie-poster'>
+                                <img onclick="loadTheMovieDetail('${data.results[i].id}')" src = 'https://www.themoviedb.org/t/p/w1280/${moviePoster}'>
                             </div>
                             <div class="columns medium-6 large-8">
                                 <h3 class = 'movie-title'>Movie: ${data.results[i].title}</h3>
@@ -329,6 +329,8 @@ function getGiphyApi(character) {
         }
     })
 }
+
+
 
 // END GIPHY API
 
