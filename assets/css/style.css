@@ -187,7 +187,23 @@ flex-direction: row;
   display: block;
 
 }
+.rated {
+  width: 50px;
+  background-color: aliceblue;
+  border: 1px solid rgb(7, 131, 220);
+  border-radius: 25px;
+  text-align: center;
+}
 
 footer {
   text-align: center;
+}
+
+@media (max-width: 406px) {
+  .menu {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items:center;
+  }
 }

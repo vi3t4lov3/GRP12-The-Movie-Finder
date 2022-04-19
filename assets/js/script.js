@@ -65,16 +65,17 @@ function getNowPlaying() {
         return response.json();
     })
     .then(function (data) {
-        // console.log(data)
+        console.log(data)
         for (var i = 0; i < data.results.length; i++) {
             var poster = data.results[i].poster_path;
             // console.log(poster)
             $('#playing-now').append(`
             <div class="row">
                             <div class="listing-playing-now" onclick="loadTheMovieDetail('${data.results[i].id}')" class = 'movie-poster'>
-                                <img src = 'https://www.themoviedb.org/t/p/w1280/${poster}'>
                                 <h3 class = 'movie-title'>${data.results[i].title}</h3>
-                                <p>${data.results[i].release_date}</p>
+                                <img src = 'https://www.themoviedb.org/t/p/w1280/${poster}'>
+                                <p><b>RELEASE DATE:</b> ${data.results[i].release_date}</p>
+                                <p class="rated">Rate ${data.results[i].vote_average}%</p>
                                 <p><a href = 'https://www.themoviedb.org/movie/${data.results[i].id}' target = '_blank'>View The Detail</a></p>
                             </div>
                     </div>
