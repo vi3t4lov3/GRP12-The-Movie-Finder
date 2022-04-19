@@ -237,7 +237,7 @@ function theMovieDbSearch(character) {
         for (var i = 0; i < data.results.length; i++) {
             if (data.results[i].media_type == 'tv') {
             var moviePoster = data.results[i].poster_path;
-            $('#tvshow-search-display').append(`
+            $('#tv-search-display').append(`
             <div class='row tv-search-display'>
                 <div class="columns medium-6 large-8">
                 <h3 class = 'movie-title'>TV Show: ${data.results[i].original_name}</h3>
@@ -276,6 +276,7 @@ function loadTheMovieDetail(movieId) {
         <a href='#' onclick='this.parentNode.parentNode.removeChild(this.parentNode)'>Close</a>
         <iframe width="420" height="315" src="https://www.youtube.com/embed/${data.results[0].key}"></iframe>
         </div>
+        </div>
         `)
 })
 }
@@ -290,11 +291,12 @@ function loadTheTvShowDetail(movieId) {
     })
     .then(function (data) {
         // console.log(data.results[0].key)
-        $('#tvShow-player').append(`
-        <div class="video-2">
-        <div class="tv-overlay">
+        $('#media-player').append(`
+        <div class="video">
+        <div class="overlay">
         <iframe width="420" height="315" src="https://www.youtube.com/embed/${data.results[0].key}"></iframe>
         <a href='#' onclick='this.parentNode.parentNode.removeChild(this.parentNode)'>Close</a>
+        </div>
         </div>
         `)
 })
