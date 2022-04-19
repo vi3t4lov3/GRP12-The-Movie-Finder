@@ -62,7 +62,7 @@ https://developers.giphy.com/
 
 https://www.themoviedb.org/
 
-https://www.omdbapi.com/ (on the developing in the new features)
+https://www.omdbapi.com/ (in the developing for the new features)
 
 ## License
 

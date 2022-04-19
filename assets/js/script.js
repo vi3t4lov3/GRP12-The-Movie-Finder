@@ -281,7 +281,7 @@ function loadTheMovieDetail(movieId) {
         <div class="video">
         <div class="overlay">
         <a href='#' onclick='this.parentNode.parentNode.removeChild(this.parentNode)'>Close</a>
-        <iframe width="420" height="315" src="https://www.youtube.com/embed/${data.results[0].key}"></iframe>
+        <iframe width="420" height="315" src="https://www.youtube.com/embed/${data.results[0].key}" allowfullscreen></iframe>
         </div>
         </div>
         `)
@@ -301,7 +301,7 @@ function loadTheTvShowDetail(movieId) {
         $('#media-player').append(`
         <div class="video">
         <div class="overlay">
-        <iframe width="420" height="315" src="https://www.youtube.com/embed/${data.results[0].key}"></iframe>
+        <iframe width="420" height="315" src="https://www.youtube.com/embed/${data.results[0].key}" allowfullscreen></iframe>
         <a href='#' onclick='this.parentNode.parentNode.removeChild(this.parentNode)'>Close</a>
         </div>
         </div>
