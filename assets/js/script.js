@@ -1,16 +1,11 @@
 // Universal variables for all functions
 var characterEl = document.querySelector('#character')
-var searchButton = document. getElementById('search-button');
 var characterSearchEL = document.querySelector('#search-form')
 var searchHistoryEl = document.querySelector('#history-search');
 var gif = document.getElementById('#gif-column');
-var outputEl = document.querySelector('#actors')
-var outputPosterEl = document.getElementById('#movie=card');
-var ratingEl = document.getElementById('#rating');
+var dropdownEl = document.querySelector('#dropdown');
+
 //golbal variables
-// var marvelApi = '8dab1b84220523126c00f0c92d4bcb32'; //Future versions
-// var marvelHashKey ='01dcb492e9aeb8c255d6ff032fac2122'; //Future versions
-// var omdbApiKey ='77e3425e'; //Future versions
 var giphyApiKey = 'ngancOjMQqKMUDs0pp3lMqtR67sdDMIC';
 var tmdbpiKey = '048b1b9e7d22100a1f7a619469d30c91';
 
@@ -23,34 +18,42 @@ var formSubmitHandler = function(event) {
            characterEl.value = "Please enter character" ;
         } else {
             character = characterEl.value;
-            search.push(character);
+            if (!search.includes(character)) {
+                search.push(character);
+            }
             localStorage.setItem('searchHistory', JSON.stringify(search));
+            displaySearchHistory();
             getGiphyApi(character);
             theMovieDbSearch(character);
-            renderSearchHistory(character);
             $('#playing-now').empty();
             // getMarvelAPI(character);
             // getOmdbApi(character); 
             // getTheMoviedpAPIs(character)
             // searchMovieInfo (character)
-            // $('#movie-details').empty();  
         }    
 }
-//render search history
-function renderSearchHistory(character) {
-    var historySearch= $('<p>'); //create a var for the button
-    historySearch.text(character);
-    historySearch.attr('data-search', character);
-    $('#history-search').append(historySearch);
-    $('#history-search').append(`<hr>`);
- }
+//render & displaySearchHistory
+function displaySearchHistory() {
+    $('#history-search').empty()
+    var itemsSearched = JSON.parse(localStorage.getItem('searchHistory')) || [];
+    for (var i = 0; i < itemsSearched.length; i++) {
+        var keyword = itemsSearched[i];
+        var historySearch= $('<p>');
+        historySearch.text(keyword);
+        historySearch.attr('data-search', keyword);
+        $('#history-search').append(historySearch);
+        $('#history-search').append(`<hr>`);
+    }
+}
  // click history search handler
 function historySearchClicktHandler(event) {
+    $('#playing-now').empty();
     var target = event.target;
     var newCharacter = target.getAttribute('data-search');
+    // console.log(newCharacter);
     theMovieDbSearch(newCharacter)
+    getGiphyApi(newCharacter);
    }
-
 
 // BEGIN THE themoviedb.org API
 //funcation list now playing on
@@ -62,7 +65,7 @@ function getNowPlaying() {
         return response.json();
     })
     .then(function (data) {
-        console.log(data)
+        // console.log(data)
         for (var i = 0; i < data.results.length; i++) {
             var poster = data.results[i].poster_path;
             // console.log(poster)
@@ -144,6 +147,9 @@ function getSocial (profileId) {
         return response.json();
     })
     .then(function (data) {
+        $('#facebook').empty();
+        $('#twitter').empty();
+        $('#instagram').empty();
         // $('#character-bio').empty();
         // console.log(data)
         if (data.facebook_id) {
@@ -173,12 +179,12 @@ function getmovie (profileId) {
         return response.json();
     })
     .then(function (data) {
-        // console.log(data.cast[0].id)
+        // console.log(data)
         $('#character-cast').empty();
         for (var i = 0; i < data.cast.length; i++) {
             var castPoster = data.cast[i].poster_path;
             // console.log(data.cast[0].id)
-            $('#character-cast').append(`<div class="list-item"><p>${data.cast[i].title}</p><img src='https://www.themoviedb.org/t/p/w1280/${castPoster}' /><p>${data.cast[i].release_date}</p></div>
+            $('#character-cast').append(`<div onclick="loadTheMovieDetail('${data.cast[i].id}')" class="list-item"><p>${data.cast[i].title}</p><img src='https://www.themoviedb.org/t/p/w1280/${castPoster}' /><p>${data.cast[i].release_date}</p></div>
         `);
         }
     })  
@@ -199,7 +205,7 @@ function theMovieDbSearch(character) {
                 $('#character-bio').empty();
                 $('#character-cast').empty();
                 $('#movie-search-display').empty();
-                $('#tvshow-search-display').empty();
+                $('#tv-search-display').empty();
                 // displayMovieDetail(data.results[i].id);
                 for (var i = 0; i < data.results.length; i++) {
                     // var movieId = data.results[i].id;
@@ -269,6 +275,7 @@ function loadTheMovieDetail(movieId) {
         return response.json();
     })
     .then(function (data) {
+        $('#media-player').empty();
         // console.log(data.results[0].key)
         $('#media-player').append(`
         <div class="video">
@@ -317,19 +324,22 @@ function getGiphyApi(character) {
         // console.log(giphy)
         for (var i = 0; i < giphy.data.length; i++) {
             var giphygif = giphy.data[i].images.original.url
-            // console.log(giphygif)
             $('#giphy-gif').append(`<img src="${giphygif}">`)
         }
     })
 }
+
 // END GIPHY API
 
 getNowPlaying();
+displaySearchHistory();
 characterSearchEL.addEventListener('submit', formSubmitHandler);
 searchHistoryEl.addEventListener('click', historySearchClicktHandler);
 
 // OUR FUTURE VERSION COMMING 
-
+// var marvelApi = '8dab1b84220523126c00f0c92d4bcb32'; //Future versions
+// var marvelHashKey ='01dcb492e9aeb8c255d6ff032fac2122'; //Future versions
+// var omdbApiKey ='77e3425e'; //Future versions
 // BEGIN OMDB API
 // Function get OMDB API data
 // function getOmdbApi(character) {

@@ -1,5 +1,5 @@
 # GRP12-Actor Movie Database
-
+![imagename](./assets/img/logo.png)
 ## Project
 
 Our site has been created as a database to search actors/actresses or movies and be provided with a detailed description, trailer and movie information, and connections to GIFs that are correlated to the searched item to be shared with friends throughout social media. When the user opens the website, they are provided a search bar to place the actors name or title of movie they wish to obtain information on. The results will show the name, picture, and description of the actor or movie, followed by a side column of animated GIF's, and finalized at the bottom with a scroll bar of designated movies for a searched actor and ability to see trailer for searched movie. 
@@ -16,8 +16,17 @@ Corey Levine
 
 ```
 GIVEN a search database inputs
-WHEN I search for an actor or movie title
-THEN I am presented with detail of character or movie...
+WHEN I enter to the home page
+THEN I am presented with a list of new movie playing at the theater right now
+WHEN I search for an actor 
+THEN I am presented with detail bio of character
+THEN I am presented with a list of movie relate with character
+WHEN I search for an movie or TV show
+THEN I am presented with a list of movie & TV show
+WHEN I click on the poster or title of movie/tvshow
+THEN I am presented with a video trailer and can play
+EVERYTIME I click search 
+THEN it will localStorage all the history search on the local and display at the dropdown bar
 
 ```
 # Usage
@@ -49,11 +58,11 @@ Movie Dipslay
 
 ## Credits
 
-https://www.omdbapi.com/
-
 https://developers.giphy.com/
 
 https://www.themoviedb.org/
+
+https://www.omdbapi.com/ (on the developing in the new features)
 
 ## License
 
